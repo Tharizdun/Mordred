@@ -1,0 +1,89 @@
+/* CSS Document */
+body
+{
+	margin:0px;
+	background-color: rgb(50,50,50);
+}
+#okno
+{
+	width:1046px;
+	background-color:rgb(90,90,90);
+	overflow: auto;
+	margin-bottom: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	padding-top:20px;
+}
+.prvky
+{
+	width:322px;
+	background: rgb(50,50,50);
+	height: 322px;
+	float: left;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+.prvky:active
+{
+	background-color: yellow;
+	width: 1006px;
+}
+#login
+{
+	padding-top:60px;
+	margin-top:200px;
+	width:400px;
+	margin-left:auto;
+	margin-right:auto;
+	overflow:auto;
+	background-color:rgb(30,30,30);
+	border-radius:5px;
+}
+.form
+{
+	height:40px;
+	width: 350px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:40px;
+}
+.form-button
+{
+	height:40px;
+	width: 350px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:40px;
+}
+.form-button .form-item
+{
+	background-color: rgb(0,70,170);
+	border: 1px solid black;
+	width:350px;
+	height:40px;
+	padding-left:20px;
+	border-radius: 25px;
+	color: rgb(200,200,200);
+	font-size:14px;
+	font-weight:bold;
+}
+.form-button .form-item:hover
+{
+	background-color: rgb(0,60,160);
+}
+
+.form .form-item
+{
+	background-color: rgb(25,25,25);
+	border: 1px solid;
+	width:330px;
+	height:40px;
+	padding-left:20px;
+}
+.form p
+{
+	margin: 0;
+	color: rgb(200,200,200);	
+}
+
