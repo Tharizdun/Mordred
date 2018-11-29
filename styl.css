@@ -31,22 +31,19 @@ body
 }
 #login
 {
-	padding-top:60px;
-	margin-top:200px;
+	padding-top:30px;
+	margin-top:15%;
 	width:400px;
 	margin-left:auto;
 	margin-right:auto;
 	overflow:auto;
 	background-color:rgb(30,30,30);
-	border-radius:5px;
+	border-radius:10px;
 }
 .form
 {
-	height:40px;
-	width: 350px;
-	margin-left:auto;
-	margin-right:auto;
-	margin-bottom:40px;
+	margin-10%;
+	margin-right:10%;
 }
 .form-button
 {
@@ -62,7 +59,7 @@ body
 	border: 1px solid black;
 	width:350px;
 	height:40px;
-	padding-left:20px;
+	padding-left:10px;
 	border-radius: 25px;
 	color: rgb(200,200,200);
 	font-size:14px;
@@ -77,9 +74,14 @@ body
 {
 	background-color: rgb(25,25,25);
 	border: 1px solid;
-	width:330px;
+	width:100%;
 	height:40px;
-	padding-left:20px;
+	padding-right:10px;
+	padding-left:10px;
+	border-radius:10px;
+	margin-top:10px;
+	margin-bottom:30px;
+	color:rgb(200, 200, 200);
 }
 .form p
 {
