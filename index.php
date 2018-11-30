@@ -32,7 +32,6 @@ MakeHeader("Login");
 ?>
 
 	<div id="login">
-	  <div id="login-bg"></div>
       <div id="login-form">
       <form method="post" action="index.php" id="form">
     	        <div class="form header">
