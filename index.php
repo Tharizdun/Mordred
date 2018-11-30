@@ -14,6 +14,10 @@ if (!empty($_POST))
     {
         $_SESSION['email'] = $email;
     }
+	else
+	{
+    //	redirect('FuckYou.php');
+	}
 }
 
 if (isset($_SESSION['email']))
