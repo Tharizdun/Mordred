@@ -1,12 +1,16 @@
 <?php
 
 require "Common.php";
+require "Authorization.php";
 
 if (!empty($_POST)) 
 {
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    if ($email == 'user@domain.com' && $password == 'alenajesamadoma')
+    $pass = $_POST['password'];
+	
+	$auth = new Authorization();
+	
+    if ($auth->AuthorizeUser($email, $pass))
     {
         $_SESSION['email'] = $email;
     }
