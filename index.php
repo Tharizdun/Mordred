@@ -1,5 +1,6 @@
 <?php
-session_start();
+
+require "Common.php";
 
 if (!empty($_POST)) 
 {
@@ -11,19 +12,6 @@ if (!empty($_POST))
     }
 }
 
-function redirect($dest)
-{
-    $script = $_SERVER["PHP_SELF"];
-    if (strpos($dest,'/')) {
-        $path = $dest;
-    } else {
-        $path = substr($script, 0, strrpos($script, '/')) . "/$dest";
-    }
-    $name = $_SERVER["SERVER_NAME"];
-    header("HTTP/1.1 301 Moved Permanently");
-    header("Location: http://$name$path");
-}
-
 if (isset($_SESSION['email']))
 {
     redirect('homepage.php');
@@ -31,36 +19,38 @@ if (isset($_SESSION['email']))
 else
 {
 
+MakeHeader("Login");
+
 ?>
-    <html lang="cs">
-    <head>
-            <meta charset="utf-8">
-            <title>Login</title>
-            <link rel="stylesheet" href="styl.css" type="text/css">
-    </head>
-    <body>
 
-
-    <div id="login">
-    <form method="post" action="index.php" id="form">
-            <div class="form">
-                    <p>E-mail</p>
-                    <input type="email" class="form-item" name="email">
-            </div>
-
-            <div class="form">
-                    <p>Password</p>
-                    <input type="password" class="form-item" name="password">
-            </div>
-
-            <div class="form-button">
-                    <input type="submit" class="form-item" value="Log-in">
-            </div>
-    </form>
-    </div>
-
-
-    </body>
-    </html>
+	<div id="login">
+	  <div id="login-bg"></div>
+      <div id="login-form">
+      <form method="post" action="index.php" id="form">
+    	        <div class="form header">
+    	                <p>MyFIT</p>
+    	        </div>
+				
+    	        <div class="form">
+    	                <p>Email</p>
+    	                <input type="email" class="form-item" name="email">
+    	        </div>
+	
+    	        <div class="form">
+    	                <p>Password</p>
+    	                <input type="password" class="form-item" name="password">
+    	        </div>
+	
+    	        <div class="form-button">
+    	                <input type="submit" class="form-item" value="Log in">
+    	        </div>
+				
+				<div class="form footer">
+					<p>Svobodní ladiči &copy; 2018</p>
+				</div>
+    	</form>
+    	</div>
+	</div>
+	
 <?php
 }
