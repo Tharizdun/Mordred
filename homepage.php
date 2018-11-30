@@ -10,12 +10,12 @@ if (!isset($_SESSION['email']))
 else
 {
 
-MakeHeader("Home", "");
+MakeHeader("Home", "homepage");
 
 ?>
 
-	<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-  		<a class="navbar-brand" href="#">MyFIT</a>
+	<nav class="navbar sticky-top navbar-expand-lg  navbar-dark bg-dark">
+  		<a class="navbar-brand logo" href="#">MyFIT</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
   		</button>
@@ -38,6 +38,28 @@ MakeHeader("Home", "");
     		</form>
   		</div>
 	</nav>
+	
+	<div class="container-fluid">
+  		<div class="col-12 col-md-3 col-xl-2 bd-sidebar sidebar">
+			<ul>
+ 				<li>Lorem ipsum dolor sit amet</li>
+				<li>Consectetur adipiscing elit</li>
+  				<li>Integer molestie lorem at massa</li>
+  				<li>Facilisis in pretium nisl aliquet</li>
+  				<li>Nulla volutpat aliquam velit
+    				<ul>
+      					<li>Phasellus iaculis neque</li>
+      					<li>Purus sodales ultricies</li>
+      					<li>Vestibulum laoreet porttitor sem</li>
+      					<li>Ac tristique libero volutpat at</li>
+    				</ul>
+  				</li>
+  				<li>Faucibus porta lacus fringilla vel</li>
+  				<li>Aenean sit amet erat nunc</li>
+  				<li>Eget porttitor lorem</li>
+			</ul>
+		</div>
+	</div>
 
 <?php
 }

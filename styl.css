@@ -9,6 +9,12 @@ body#login
 	padding:5% 0;
 }
 
+body#homepage
+{
+	background-color:rgb(60, 60, 60);
+	color:white;
+}
+
 a#button
 {
     -webkit-appearance: button;
@@ -26,6 +32,18 @@ a#button
 	font-weight:bold;
 	text-align:center;
 	line-height:40px;
+}
+
+a.logo
+{
+	font-size:1.5rem;
+	font-weight:bold;
+}
+
+div.sidebar
+{
+	border-right:1px solid grey;
+	padding-top:20px;
 }
 
 #okno
