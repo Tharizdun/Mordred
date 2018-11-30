@@ -27,7 +27,7 @@ if (isset($_SESSION['email']))
 else
 {
 
-MakeHeader("Login");
+MakeHeader("Register");
 
 ?>
 
@@ -40,19 +40,32 @@ MakeHeader("Login");
     	        </div>
 				
     	        <div class="form">
+    	                <p>First name</p>
+    	                <input type="text" class="form-item" name="firstname">
+    	        </div>
+				
+    	        <div class="form">
+    	                <p>Last name</p>
+    	                <input type="text" class="form-item" name="lastname">
+    	        </div>
+				
+    	        <div class="form">
     	                <p>Email</p>
     	                <input type="email" class="form-item" name="email">
     	        </div>
-	
+				
     	        <div class="form">
     	                <p>Password</p>
     	                <input type="password" class="form-item" name="password">
     	        </div>
+				
+    	        <div class="form">
+    	                <p>Password again</p>
+    	                <input type="password" class="form-item" name="password">
+    	        </div>
 	
     	        <div class="form-button">
-    	                <input type="submit" class="form-item" value="Log in">
-						<div class="separator"></div>
-    	                <a id="button" href="register.php">Register</a>
+    	                <input type="submit" class="form-item" value="Register">
     	        </div>
 				
 				<div class="form footer">
