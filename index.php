@@ -51,6 +51,8 @@ MakeHeader("Login");
 	
     	        <div class="form-button">
     	                <input type="submit" class="form-item" value="Log in">
+						<div class="separator"></div>
+    	                <a id="button" href="/register.php">Register</a>
     	        </div>
 				
 				<div class="form footer">
