@@ -67,6 +67,11 @@ MakeHeader("Register");
     	        <div class="form-button">
     	                <input type="submit" class="form-item" value="Register">
     	        </div>
+	
+    	        <div class="form">
+    	                <p>Already have account?</p>
+    	                <a id="button" href="index.php">Log in</a>
+    	        </div>
 				
 				<div class="form footer">
 					<p>Svobodní ladiči &copy; 2018</p>
