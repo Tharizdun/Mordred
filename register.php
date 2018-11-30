@@ -27,7 +27,7 @@ if (isset($_SESSION['email']))
 else
 {
 
-MakeHeader("Register");
+MakeHeader("Register", "login");
 
 ?>
 

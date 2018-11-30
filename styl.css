@@ -1,12 +1,11 @@
 /* CSS Document */
-body
+body#login
 {
 	margin:0px;
 	background-color: rgb(50,50,50);
 	background-image:url("HeroLogin2.jpg");
 	background-size:cover;
 	background-repeat:no-repeat;
-	background-position:center;
 	padding:5% 0;
 }
 
