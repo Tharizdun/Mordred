@@ -27,7 +27,7 @@ MakeMenu();
 ?>
 			
 			<div class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
-				<form class="homepage-post" method="post" action="homepage.php">
+				<form class="homepage-post" method="post" action="homepage.php" accept-charset="UTF-8">
 					<div class="post-part">
 						<textarea type="text" class="post-item" name="message" placeholder="Post message"></textarea>
 					</div>

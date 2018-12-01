@@ -29,7 +29,7 @@ MakeHeader("Register", "login");
 ?>
 
 	<div id="login-form">
-      	<form method="post" action="register.php" id="form">
+      	<form method="post" action="register.php" id="form" accept-charset="utf-8">
     	        <div class="form header">
     	                <p>MyFIT</p>
     	        </div>
