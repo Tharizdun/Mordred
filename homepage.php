@@ -42,7 +42,7 @@ MakeMenu();
 ?>
 			
 			<div class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
-				<form class="homepage-post" method="post" action="homepage.php" accept-charset="UTF-8">
+				<form class="homepage-post" method="post" action="homepage.php">
 					<div class="post-part">
 						<textarea type="text" class="post-item" name="message" placeholder="Post message"></textarea>
 					</div>
@@ -64,6 +64,9 @@ MakeMenu();
 					$users = new Users();
 					
 					$allPosts = array_reverse($allPosts);
+					
+					$isUserAdmin = $users->GetUserInfo($_SESSION['email'], "Admin");
+					$isUserAdmin = $isUserAdmin['Admin'];
 						
 					for ($i = 0; $i < sizeof($allPosts); $i++)
 					{
@@ -83,7 +86,7 @@ MakeMenu();
 						echo $post['Message'];
 						echo "	</div>";
 						
-						if ($owner)
+						if ($owner || $isUserAdmin)
 							echo "<a href=\"homepage.php?action=delete&id=" . $post['ID'] . "\" type=\"button\" class=\"btn btn-primary manage\">Delete post</a>";
 						
 						echo "</div>";

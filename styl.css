@@ -148,7 +148,7 @@ a.dark:hover
 .post
 {
 	width:50%;
-	margin-bottom:10px;
+	margin-bottom:20px;
 }
 
 .post .manage
@@ -157,6 +157,7 @@ a.dark:hover
 	padding:0px;
 	padding-right:5px;
 	padding-left:5px;
+	margin-top:5px;
 }
 
 .post .title
@@ -210,6 +211,7 @@ a.dark:hover
 	color: rgb(200,200,200);
 	font-size:14px;
 	font-weight:bold;
+	margin-top:5px;
 }
 
 .homepage-post .post-part .post-button:hover

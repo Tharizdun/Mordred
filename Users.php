@@ -12,7 +12,7 @@ class Users
 			$this->dbc = new DBConnect();
 	}
 	
-	function GetUserInfo($email, $column)
+	function GetUserInfo($email, $column = "*")
 	{
 		try
 		{		
