@@ -63,11 +63,10 @@ a.nav-link
 .sidebar
 {
 	border-right:1px solid grey;
-	padding-top:20px;
-        background-color: rgb(35,35,35);
-        display: flex;
-        flex-flow: column;
-        min-height: 100vh;
+	padding-top:25px;
+    background-color: rgb(35,35,35);        
+	flex-flow: column; 
+	min-height: 100vh;
 }
 .sidebar .nav-link
 {
