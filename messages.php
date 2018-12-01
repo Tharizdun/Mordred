@@ -24,8 +24,8 @@ MakeHeader("Messages", "homepage");
 MakeMenu();
 
 ?>
-			
-			
+
+
 
 <?php
 }

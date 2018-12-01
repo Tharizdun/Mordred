@@ -90,6 +90,7 @@ else
 					echo "	<a class=\"btn btn-secondary\" href=\"profile.php?action=add&id=" . $id . "\">Add friend</a>";
 			}
 			
+			echo "	<a href=\"messages.php?id=" . $id . "\" class=\"btn btn-secondary\">Message</a>";
 			echo "	<a href=\"profile.php?id=" . $id . "\" class=\"btn btn-secondary\">Feed</a>";
 			echo "	<a href=\"friends.php?id=" . $id . "\" class=\"btn btn-secondary\">Friends</a>";
   			echo "	<a href=\"photos.php?id=" . $id . "\" class=\"btn btn-secondary\">Photos</a>";
