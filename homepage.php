@@ -13,6 +13,21 @@ if (!empty($_POST))
 	$posts->AddPost($email, $message);
 }
 
+if (!empty($_GET))
+{
+	$id = $_GET['id'];
+	$action = $_GET['action'];
+	
+	switch($action)
+	{
+		case 'delete':
+			$posts = new Posts();
+			
+			$posts->DeletePost($id);
+			break;
+	}
+}
+
 if (!isset($_SESSION['email']))
 {
     redirect('index.php');
@@ -57,6 +72,8 @@ MakeMenu();
 						$userInfo = $users->GetUserByID($post['IDUser']);
 						$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
 						
+						$owner = $userInfo['Email'] == $_SESSION['email'];
+						
 						echo "<div class=\"post\">";
 						echo "	<p class=\"title\">";
 						echo "		<span class=\"author\">" . $userName . "</span>";
@@ -65,6 +82,10 @@ MakeMenu();
 						echo "	<div class=\"message\">";
 						echo $post['Message'];
 						echo "	</div>";
+						
+						if ($owner)
+							echo "<a href=\"homepage.php?action=delete&id=" . $post['ID'] . "\" type=\"button\" class=\"btn btn-primary manage\">Delete post</a>";
+						
 						echo "</div>";
 					}
 				}

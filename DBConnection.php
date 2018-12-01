@@ -53,6 +53,20 @@ class DBConnect
 			echo "<script>console.log( 'Debug Objects: DBConnect.php: " . $e . " );</script>";
 		}
 	}
+	
+	function Update($table, $column, $value, $condition)
+	{
+		try
+		{
+			$result = $this->pdo->query("UPDATE  " . $table . " SET " . $column . " = " . $value . " WHERE " . $condition);
+			
+			return $result;
+		}
+		catch (PDOException $e)
+		{
+			echo "<script>console.log( 'Debug Objects: DBConnect.php: " . $e . " );</script>";
+		}
+	}
 }
 
 ?>
