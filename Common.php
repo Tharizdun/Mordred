@@ -4,7 +4,6 @@ require_once "Users.php";
 
 session_start();
 
-
 function MakeHeader($title, $bodyClass)
 {
 header('Content-type: text/html; charset=utf-8');
@@ -34,7 +33,7 @@ function MakeMenu()
 	$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
 
 ?>
-		<nav class="navbar sticky-top navbar-expand-lg  navbar-dark bg-dark">
+		<nav class="navbar sticky-top navbar-expand-lg  navbar-horizontal">
   		<a class="navbar-brand logo" href="homepage.php">MyFIT</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
