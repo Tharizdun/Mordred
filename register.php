@@ -29,19 +29,19 @@ MakeHeader("Register", "login");
 ?>
 
 	<div id="login-form">
-      	<form method="post" action="index.php" id="form">
+      	<form method="post" action="register.php" id="form">
     	        <div class="form header">
     	                <p>MyFIT</p>
     	        </div>
 				
     	        <div class="form">
     	                <p>First name</p>
-    	                <input type="text" class="form-item" name="firstname">
+    	                <input type="text" class="form-item" name="firstName">
     	        </div>
 				
     	        <div class="form">
     	                <p>Last name</p>
-    	                <input type="text" class="form-item" name="lastname">
+    	                <input type="text" class="form-item" name="lastName">
     	        </div>
 				
     	        <div class="form">
