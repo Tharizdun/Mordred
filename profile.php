@@ -19,8 +19,9 @@ else
 	$users = new Users();
 	$userName = "";
 	
-	$isOwner = $users->GetUserInfo($_SESSION['email'], "Admin");
-	$isOwner = $isOwner['Admin'];
+	$isAdmin = $users->GetUserInfo($_SESSION['email'], "Admin");
+	$isAdmin = $isAdmin['Admin'];
+	$isOwner = False;
 
 	if ($id == -1)
 	{
@@ -40,14 +41,16 @@ else
 		
 		<?php 
 		
-			if ($isOwner)
+			echo "<div class=\"btn-group\" role=\"group\" aria-label=\"Manage user\">";
+			echo "	<button type=\"button\" class=\"btn btn-secondary\">Friends</button>";
+  			echo "	<button type=\"button\" class=\"btn btn-secondary\">Photos</button>";
+								
+			if ($isOwner && $isAdmin)
 			{
-				echo "<div class=\"btn-group\" role=\"group\" aria-label=\"Manage user\">";
-				echo "	<button type=\"button\" class=\"btn btn-secondary\">Media content</button>";
-  				echo "	<button type=\"button\" class=\"btn btn-secondary\">Friends</button>";
   				echo "	<button type=\"button\" class=\"btn btn-secondary\">Settings</button>";
-				echo "</div>";
 			}
+			
+				echo "</div>";
 		
 		?>
 
