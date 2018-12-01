@@ -145,6 +145,11 @@ a.dark:hover
 	font-weight:bold;
 }
 
+.user-name
+{
+	margin:25px;
+}
+
 .post
 {
 	width:50%;

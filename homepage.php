@@ -79,7 +79,7 @@ MakeMenu();
 						
 						echo "<div class=\"post\">";
 						echo "	<p class=\"title\">";
-						echo "		<span class=\"author\">" . $userName . "</span>";
+						echo "		<span class=\"author\"><a href=\"profile.php?id=" . $post['IDUser'] . "\">" . $userName . "</a></span>";
 						echo "		<span class=\"time\">" . $post['Time'] . "</span>";
 						echo "	</p>";
 						echo "	<div class=\"message\">";
