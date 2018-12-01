@@ -1,6 +1,6 @@
 <?php
 
-require "DBConnection.php";
+require_once "Users.php";
 
 class Posts
 {
@@ -12,15 +12,26 @@ class Posts
 	function AddPost($email, $message)
 	{
 		$dbc = new DBConnect();
+		$users = new Users();
 		
-		$userID = $dbc->GetUserInfo($email, "ID");
+		$userID = $users->GetUserInfo($email, "ID");
 		
 		if ($userID == NULL)
 			return false;
 		else 
 		{
-			$query = "INSERT INTO `xzedni12`.`Posts` (`ID`, `IDUser`, `Message`, `Time`, `Date`, `Shared`, `Deleted`) VALUES (NULL, '" . $userID . "', '" . $message . "', CURRENT_TIMESTAMP, '" . date("Y-m-d") . "', '1', '0');";
+			$query = "INSERT INTO `xzedni12`.`Posts` (`ID`, `IDUser`, `Message`, `Time`, `Date`, `Shared`, `Deleted`) VALUES (NULL, '" . $userID['ID'] . "', '" . $message . "', CURRENT_TIMESTAMP, '" . date("Y-m-d") . "', '1', '0');";
+			
 			$dbc->DoQuery($query);
 		}
+	}
+	
+	function GetPosts($email)
+	{
+		$dbc = new DBConnect();
+		
+		$allPosts = $dbc->Select("Posts");
+		
+		return $allPosts;
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 
-require "Common.php";
-require "Authorization.php";
+require_once "Common.php";
+require_once "Authorization.php";
 
 if (!empty($_POST)) 
 {

@@ -1,6 +1,6 @@
 <?php
 
-require "DBConnection.php";
+require_once "Users.php";
 
 class Authorization
 {
@@ -11,13 +11,13 @@ class Authorization
 
 	function AuthorizeUser($email, $pass)
 	{
-		$dbc = new DBConnect();
+		$users = new Users();
 		
-		$userPass = $dbc->GetUserInfo($email, "Password");
+		$userPass = $users->GetUserInfo($email, "Password");
 		
 		if ($userPass == NULL)
 			return false;
-		else if ($pass == $userPass)
+		else if ($pass == $userPass['Password'])
 			return true;
 		else
 			return false;

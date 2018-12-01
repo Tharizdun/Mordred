@@ -3,7 +3,7 @@
 class DBConnect
 {
 	
-	private $pdo;
+	private static $pdo = NULL;
 	
 	function __construct()
 	{
@@ -23,19 +23,11 @@ class DBConnect
 		}
 	}
 	
-	function GetUserInfo($email, $column)
+	function DoQuery($query)
 	{
 		try
 		{
-			$user = $this->pdo->query("SELECT " . $column . " FROM Users WHERE Email='" . $email . "'");
-			
-			if (sizeof($user) == 1)
-			{
-				$pass = $user->fetch();
-				return $pass[$column];
-			}
-			else
-				return null;	
+			$result = $this->pdo->query($query);
 		}
 		catch (PDOException $e)
 		{
@@ -43,11 +35,18 @@ class DBConnect
 		}
 	}
 	
-	function DoQuery($query)
+	function Select($table, $columns = "*", $condition = NULL)
 	{
 		try
 		{
-			$result = $this->pdo->query($query);
+			if ($condition != NULL)
+				$wherePart = " WHERE " . $condition;
+			else
+				$wherePart = "";
+				
+			$result = $this->pdo->query("SELECT " . $columns . " FROM " . $table . $wherePart . " LIMIT 100");
+			
+			return $result;
 		}
 		catch (PDOException $e)
 		{

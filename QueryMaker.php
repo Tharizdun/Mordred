@@ -1,6 +1,5 @@
 <?php
 
-require "DBConnection.php";
 
 class QueryMaker
 {
