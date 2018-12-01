@@ -86,7 +86,7 @@ function MakeMenu()
 				</ul>
 				<ul class="nav flex-column menu">
 	  				<li class="nav-item">
-    					<span class="header">Friends</span>
+    					<span class="header">Online friends</span>
 	  				</li>
 					
 					<?php 
@@ -164,6 +164,18 @@ function MakeFooter()
 </body>
 </html>
 <?php
+}
+
+function MakeOnline()
+{
+	$users = new Users();
+	$user = $users->SwitchStatus($_SESSION['email']);
+}
+
+function MakeOffline()
+{
+	$users = new Users();
+	$user = $users->SwitchStatus($_SESSION['email'], False);
 }
 
 function redirect($dest)

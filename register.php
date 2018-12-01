@@ -19,6 +19,7 @@ if (!empty($_POST))
 
 if (isset($_SESSION['email']))
 {
+	MakeOnline();
     redirect('homepage.php');
 }
 else

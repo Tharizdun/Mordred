@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once "Common.php";
 require_once "Authorization.php";
@@ -22,6 +22,7 @@ if (!empty($_POST))
 
 if (isset($_SESSION['email']))
 {
+	MakeOnline();
     redirect('homepage.php');
 }
 else

@@ -93,12 +93,32 @@ class Users
 	{	
 		if ($addFriend)
 		{			
-			$query = "INSERT INTO `xzedni12`.`Friends` (`ID` ,`IDUser1` ,`IDUser2` ) VALUES (NULL , '" . $id . "', '" . $owner . "');";			
+			$query = "INSERT INTO `xzedni12`.`Friends` (`ID` ,`IDUser1` ,`IDUser2` ) VALUES (NULL , '" . $id . "', '" . $owner . "');";
 			$this->dbc->DoQuery($query);
 		}
 		else
 		{			
 			$this->dbc->Delete("Friends", "(IDUser1='" . $id . "' AND IDUser2='" . $owner . "') OR (IDUser1='" . $owner . "' AND IDUser2='" . $id . "')");
+		}
+	}
+	
+	function SwitchStatus($email, $isOnline = true)
+	{
+		 $user = $this->GetUserInfo($email, "ID");	
+	
+		if ($isOnline)
+		{
+			$result = $this->dbc->Select("Online", "ID", "IDUser='" . $user['ID'] . "'")->FetchAll();
+			
+			if (sizeof($result) == 0)
+			{
+				$query = "INSERT INTO `xzedni12`.`Online` (`ID`, `IDUser`) VALUES (NULL, '" . $user['ID'] . "');";
+				$this->dbc->DoQuery($query);
+			}
+		}
+		else
+		{			
+			$this->dbc->Delete("Online", "IDUser='" . $user['ID'] . "'");
 		}
 	}
 }
