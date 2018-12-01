@@ -4,6 +4,7 @@ session_start();
 
 function MakeHeader($title, $bodyClass)
 {
+header('Content-type: text/html; charset=utf-8');
 ?>
 <!DOCTYPE html> 
     <html lang="cs">
