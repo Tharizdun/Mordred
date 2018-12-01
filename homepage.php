@@ -59,7 +59,7 @@ MakeMenu();
 				
 				$posts = new Posts();
 				
-				$allPosts = $posts->GetPosts($_SESSION["email"], True)->fetchAll();
+				$allPosts = $posts->GetPosts($_SESSION["email"])->fetchAll();
 				
 				if ($allPosts != NULL)
 				{						
