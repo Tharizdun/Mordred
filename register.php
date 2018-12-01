@@ -5,19 +5,16 @@ require_once "Authorization.php";
 
 if (!empty($_POST)) 
 {
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
     $email = $_POST['email'];
     $pass = $_POST['password'];
 	
-	$auth = new Authorization();
+	$users = new Users();
 	
-    if ($auth->AuthorizeUser($email, $pass))
-    {
-        $_SESSION['email'] = $email;
-    }
-	else
-	{
-    //	redirect('FuckYou.php');
-	}
+	$users->RegisterUser($firstName, $lastName, $email, $pass);
+	
+	$_SESSION['email'] = $email;
 }
 
 if (isset($_SESSION['email']))
@@ -33,19 +30,19 @@ MakeHeader("Register", "login");
 
 	<div id="login">
       <div id="login-form">
-      	<form method="post" action="index.php" id="form">
+      	<form method="post" action="register.php" id="form">
     	        <div class="form header">
     	                <p>MyFIT</p>
     	        </div>
 				
     	        <div class="form">
     	                <p>First name</p>
-    	                <input type="text" class="form-item" name="firstname">
+    	                <input type="text" class="form-item" name="firstName">
     	        </div>
 				
     	        <div class="form">
     	                <p>Last name</p>
-    	                <input type="text" class="form-item" name="lastname">
+    	                <input type="text" class="form-item" name="lastName">
     	        </div>
 				
     	        <div class="form">
@@ -60,7 +57,7 @@ MakeHeader("Register", "login");
 				
     	        <div class="form">
     	                <p>Password again</p>
-    	                <input type="password" class="form-item" name="password">
+    	                <input type="password" class="form-item" name="passwordAgain">
     	        </div>
 	
     	        <div class="form-button">

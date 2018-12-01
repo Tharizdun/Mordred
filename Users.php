@@ -47,4 +47,11 @@ class Users
 			echo "<script>console.log( 'Debug Objects: Users.php: " . $e . " );</script>";
 		}
 	}
+	
+	function RegisterUser($firstName, $lastName, $email, $pass)
+	{
+		$query = "INSERT INTO `xzedni12`.`Users` (`ID`, `School`, `Residence`, `Occupation`, `Phone`, `RelationshipStatus`, `Relationship`, `Deleted`, `Email`, `Password`, `Admin`, `FirstName`, `LastName`) VALUES (NULL, '', '', '', '', '', '', '0', '" . $email . "', '" . $pass . "', '0', '" . $firstName . "', '" . $lastName . "');";
+			
+		$this->dbc->DoQuery($query);
+	}
 }
