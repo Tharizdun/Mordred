@@ -187,9 +187,14 @@ textArea:focus
 	font-weight:bold;
 }
 
-.user-name
+.user
 {
 	margin:25px;
+}
+
+.user .name
+{
+	font-wegiht:bold;
 }
 
 .menu

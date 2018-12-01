@@ -54,4 +54,55 @@ class Users
 			
 		$this->dbc->DoQuery($query);
 	}
+	
+	function GetFriends($id)
+	{
+		try
+		{
+			$allFriends = array();
+		
+			$userFriends1 = $this->dbc->Select("Friends", "IDUser2", "IDUser1='" . $id . "'")->FetchAll();
+			$userFriends2 = $this->dbc->Select("Friends", "IDUser1", "IDUser2='" . $id . "'")->FetchAll();
+			
+			if ($userFriends2 != NULL)
+			{
+				foreach ($userFriends2 as $friend)
+				{
+					array_push($allFriends, $friend[0]);
+				}
+			}
+			
+			if ($userFriends1 != NULL)
+			{
+				foreach ($userFriends1 as $friend)
+				{
+					array_push($allFriends, $friend[0]);
+				}
+			}
+				
+			return $allFriends;
+			
+		}
+		catch (PDOException $e)
+		{
+			echo "<script>console.log( 'Debug Objects: Users.php: " . $e . " );</script>";
+		}
+	}
+	
+	function SwitchFriend($id, $owner, $addFriend = true)
+	{	
+		if ($addFriend)
+		{			
+			$query = "INSERT INTO `xzedni12`.`Friends` (`ID` ,`IDUser1` ,`IDUser2` ) VALUES (NULL , '" . $id . "', '" . $owner . "');";			
+			$this->dbc->DoQuery($query);
+		}
+		else
+		{			
+			$this->dbc->Delete("Friends", "(IDUser1='" . $id . "' AND IDUser2='" . $owner . "') OR (IDUser1='" . $owner . "' AND IDUser2='" . $id . "')");
+		}
+	}
 }
+
+
+
+

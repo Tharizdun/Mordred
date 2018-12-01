@@ -30,10 +30,10 @@ header('Content-type: text/html; charset=utf-8');
 function MakeMenu()
 {	
 	$users = new Users();
-	$userName = $users->GetUserInfo($_SESSION['email'], "FirstName, LastName");
+	$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
 
 ?>
-		<nav class="navbar sticky-top navbar-expand-lg  navbar-horizontal">
+		<nav class="navbar sticky-top navbar-expand-lg  navbar-dark bg-dark">
   		<a class="navbar-brand logo" href="homepage.php">MyFIT</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
@@ -48,9 +48,10 @@ function MakeMenu()
         			<a class="nav-link" href="profile.php">
 					<?php 
 						
-						echo $userName['FirstName'] . " " .  $userName['LastName'];
+						echo $user['FirstName'] . " " .  $user['LastName'];
 						
-						?> <span class="sr-only">(current)</span></a>
+						?> 
+						<span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item active">
         			<a class="nav-link" href="signout.php">Sign out<span class="sr-only">(current)</span></a>
@@ -74,7 +75,7 @@ function MakeMenu()
 	    				<a class="nav-link active" href="profile.php">
 						<?php 
 						
-						echo $userName['FirstName'] . " " .  $userName['LastName'];
+						echo $user['FirstName'] . " " .  $user['LastName'];
 						
 						?>						
 						</a>
@@ -87,9 +88,28 @@ function MakeMenu()
 	  				<li class="nav-item">
     					<span class="header">Friends</span>
 	  				</li>
-  					<li class="nav-item">
-    					<a class="nav-link active" href="homepage.php">Bajkar</a>
-  					</li>
+					
+					<?php 
+						
+						$allFriends = $users->GetFriends($user['ID']);
+				
+						if ($allFriends != NULL)
+						{						
+							for ($i = 0; $i < sizeof($allFriends); $i++)
+							{
+								$friend = $allFriends[$i];
+								
+								$friendInfo = $users->GetUserByID($friend);
+								$friendName = $friendInfo['FirstName'] . " " .  $friendInfo['LastName'];
+														
+								echo "<li class=\"nav-item\">";
+    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . ".php\">" . $friendName . "</a>";
+  								echo "</li>";
+								
+							}
+						}
+						
+					?>
 				</ul>
 			</div>
 <?php
