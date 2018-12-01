@@ -11,8 +11,8 @@ function MakeHeader($title, $bodyClass)
 <!DOCTYPE html> 
     <html lang="cs">
     <head>
-	  		<meta http-equiv="content-type" content="text/html; charset=utf-8">			
-	  		<meta charset="utf-8">
+	  		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+			<meta charset="utf-8">
 			
             <title>MyFIT - <?php echo $title;?></title>
 			
@@ -30,6 +30,7 @@ function MakeHeader($title, $bodyClass)
 function MakeMenu()
 {	
 	$users = new Users();
+	$userName = $users->GetUserInfo($_SESSION['email'], "FirstName, LastName");
 
 ?>
 		<nav class="navbar sticky-top navbar-expand-lg  navbar-dark bg-dark">
@@ -44,7 +45,12 @@ function MakeMenu()
         			<a class="nav-link" href="homepage.php">Home <span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item active">
-        			<a class="nav-link" href="profile.php">My profile <span class="sr-only">(current)</span></a>
+        			<a class="nav-link" href="profile.php">
+					<?php 
+						
+						echo $userName['FirstName'] . " " .  $userName['LastName'];
+						
+						?> <span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item active">
         			<a class="nav-link" href="signout.php">Sign out<span class="sr-only">(current)</span></a>
@@ -68,7 +74,6 @@ function MakeMenu()
 	    				<a class="nav-link active" href="profile.php">
 						<?php 
 						
-						$userName = $users->GetUserInfo($_SESSION['email'], "FirstName, LastName");
 						echo $userName['FirstName'] . " " .  $userName['LastName'];
 						
 						?>						
@@ -83,7 +88,7 @@ function MakeMenu()
     					<span class="header">Friends</span>
 	  				</li>
   					<li class="nav-item">
-    					<a class="nav-link active" href="homepage.php">Bajkař ... :Kappa:</a>
+    					<a class="nav-link active" href="homepage.php">Bajkar</a>
   					</li>
 				</ul>
 			</div>
