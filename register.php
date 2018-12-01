@@ -28,21 +28,20 @@ MakeHeader("Register", "login");
 
 ?>
 
-	<div id="login">
-      <div id="login-form">
-      	<form method="post" action="register.php" id="form">
+	<div id="login-form">
+      	<form method="post" action="index.php" id="form">
     	        <div class="form header">
     	                <p>MyFIT</p>
     	        </div>
 				
     	        <div class="form">
     	                <p>First name</p>
-    	                <input type="text" class="form-item" name="firstName">
+    	                <input type="text" class="form-item" name="firstname">
     	        </div>
 				
     	        <div class="form">
     	                <p>Last name</p>
-    	                <input type="text" class="form-item" name="lastName">
+    	                <input type="text" class="form-item" name="lastname">
     	        </div>
 				
     	        <div class="form">
@@ -60,13 +59,13 @@ MakeHeader("Register", "login");
     	                <input type="password" class="form-item" name="passwordAgain">
     	        </div>
 	
-    	        <div class="form-button">
-    	                <input type="submit" class="form-item" value="Register">
+    	        <div class="form">
+    	                <input type="submit" class="form-button" value="Register">
     	        </div>
 	
     	        <div class="form">
     	                <p>Already have account?</p>
-    	                <a id="button" href="index.php">Log in</a>
+    	                <a class="form-button" href="index.php">Log in</a>
     	        </div>
 				
 				<div class="form footer">
@@ -74,7 +73,6 @@ MakeHeader("Register", "login");
 				</div>
     	</form>
     	</div>
-	</div>
 	
 <?php
 }

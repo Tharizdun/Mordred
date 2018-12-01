@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require_once "Common.php";
 require_once "Authorization.php";
@@ -31,35 +31,33 @@ MakeHeader("Login", "login");
 
 ?>
 
-	<div id="login">
-      <div id="login-form">
-      <form method="post" action="index.php" id="form">
-    	        <div class="form header">
-    	                <p>MyFIT</p>
-    	        </div>
-				
-    	        <div class="form">
-    	                <p>Email</p>
-    	                <input type="email" class="form-item" name="email">
-    	        </div>
-	
-    	        <div class="form">
-    	                <p>Password</p>
-    	                <input type="password" class="form-item" name="password">
-    	        </div>
-	
-    	        <div class="form-button">
-    	                <input type="submit" class="form-item" value="Log in">
-						<div class="separator"></div>
-    	                <a id="button" href="register.php">Register</a>
-    	        </div>
-				
-				<div class="form footer">
-					<p>Svobodní ladiči &copy; 2018</p>
-				</div>
-    	</form>
-    	</div>
-	</div>
+	<div id="login-form">
+        <form method="post" action="index.php" id="form">
+                <div class="form header">
+                        <p>MyFIT</p>
+                </div>
+
+                <div class="form">
+                        <p>Email</p>
+                        <input type="email" class="form-item" name="email">
+                </div>
+
+                <div class="form">
+                        <p>Password</p>
+                        <input type="password" class="form-item" name="password">
+                </div>
+
+                <div class="form-button-group">
+                        <input type="submit" class="form-button" value="Log in">
+                        <div class="form-button-separator"></div>
+                        <a class="form-button" href="register.php">Register</a>
+                </div>
+
+                                <div class="form footer">
+                                        <p>Svobodní ladiči &copy; 2018</p>
+                                </div>
+          </form>
+      </div>
 	
 <?php
 }
