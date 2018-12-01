@@ -23,19 +23,31 @@ class DBConnect
 		}
 	}
 	
-	function GetUser($email)
+	function GetUserInfo($email, $column)
 	{
 		try
 		{
-			$user = $this->pdo->query("SELECT Password FROM Users WHERE Email='" . $email . "'");
+			$user = $this->pdo->query("SELECT " . $column . " FROM Users WHERE Email='" . $email . "'");
 			
 			if (sizeof($user) == 1)
 			{
 				$pass = $user->fetch();
-				return $pass['Password'];
+				return $pass[$column];
 			}
 			else
 				return null;	
+		}
+		catch (PDOException $e)
+		{
+			echo "<script>console.log( 'Debug Objects: DBConnect.php: " . $e . " );</script>";
+		}
+	}
+	
+	function DoQuery($query)
+	{
+		try
+		{
+			$result = $this->pdo->query($query);
 		}
 		catch (PDOException $e)
 		{

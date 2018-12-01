@@ -13,7 +13,7 @@ class Authorization
 	{
 		$dbc = new DBConnect();
 		
-		$userPass = $dbc->GetUser($email);
+		$userPass = $dbc->GetUserInfo($email, "Password");
 		
 		if ($userPass == NULL)
 			return false;

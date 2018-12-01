@@ -1,7 +1,17 @@
 <?php
 
 require "Common.php";
-require "Authorization.php";
+require "Posts.php";
+
+if (!empty($_POST)) 
+{
+    $message = $_POST['message'];
+    $email = $_SESSION['email'];
+	
+	$posts = new Posts();
+	
+	$posts->AddPost($email, $message);
+}
 
 if (!isset($_SESSION['email']))
 {
@@ -58,7 +68,7 @@ MakeHeader("Home", "homepage");
 			<div class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
 				<form class="homepage-post" method="post" action="homepage.php">
 					<div class="post-part">
-						<textarea type="text" class="post-item" placeholder="Post message"></textarea>
+						<textarea type="text" class="post-item" name="message" placeholder="Post message"></textarea>
 					</div>
 					<div class="post-part">
 						<input type="submit" value="Post" class="post-button">
@@ -66,6 +76,639 @@ MakeHeader("Home", "homepage");
 				</form>
 				
 				<hr>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					</p>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				<div class="post">
+					<p class="title">
+						<span class="author">Jan Rajnoha</span> 
+						<span class="time">18. 6. 1996</span>
+					<div class="message">
+						message
+					</div>
+				</div>
+				
+				
 				
 				posts
 			</div>
