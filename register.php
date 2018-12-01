@@ -33,7 +33,7 @@ MakeHeader("Register", "login");
 
 	<div id="login">
       <div id="login-form">
-      <form method="post" action="index.php" id="form">
+      	<form method="post" action="index.php" id="form">
     	        <div class="form header">
     	                <p>MyFIT</p>
     	        </div>

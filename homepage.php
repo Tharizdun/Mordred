@@ -40,24 +40,35 @@ MakeHeader("Home", "homepage");
 	</nav>
 	
 	<div class="container-fluid">
-  		<div class="col-12 col-md-3 col-xl-2 bd-sidebar sidebar">
-			<ul>
- 				<li>Lorem ipsum dolor sit amet</li>
-				<li>Consectetur adipiscing elit</li>
-  				<li>Integer molestie lorem at massa</li>
-  				<li>Facilisis in pretium nisl aliquet</li>
-  				<li>Nulla volutpat aliquam velit
-    				<ul>
-      					<li>Phasellus iaculis neque</li>
-      					<li>Purus sodales ultricies</li>
-      					<li>Vestibulum laoreet porttitor sem</li>
-      					<li>Ac tristique libero volutpat at</li>
-    				</ul>
-  				</li>
-  				<li>Faucibus porta lacus fringilla vel</li>
-  				<li>Aenean sit amet erat nunc</li>
-  				<li>Eget porttitor lorem</li>
-			</ul>
+		<div class="row flex-xl-nowrap">
+  			<div class="col-12 col-md-3 col-xl-2 bd-sidebar sidebar">
+    			<ul class="nav flex-column">
+  					<li class="nav-item">
+    					<a class="nav-link active" href="#">News feed</a>
+  					</li>
+  					<li class="nav-item">
+					    <a class="nav-link" href="messages.php">Messages</a>
+  					</li>
+  					<li class="nav-item">
+    					<a class="nav-link" href="settings.php">Settings</a>
+  					</li>
+				</ul>
+			</div>
+			
+			<div class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
+				<form class="homepage-post" method="post" action="homepage.php">
+					<div class="post-part">
+						<textarea type="text" class="post-item" placeholder="Post message"></textarea>
+					</div>
+					<div class="post-part">
+						<input type="submit" value="Post" class="post-button">
+					</div>
+				</form>
+				
+				<hr>
+				
+				posts
+			</div>
 		</div>
 	</div>
 
