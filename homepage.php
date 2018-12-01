@@ -41,7 +41,7 @@ MakeMenu();
 
 ?>
 			
-			<div class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content homepage">
+			<div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content homepage">
 				<h1>What are you doing today?</h1>
 			
 				<form class="homepage-post" method="post" action="homepage.php">
@@ -98,10 +98,10 @@ MakeMenu();
 				?>			
 				
 			</div>
-		</div>
-	</div>
 
 <?php
+
+	MakeConversationPane();
 }
 
 

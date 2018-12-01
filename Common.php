@@ -116,6 +116,48 @@ function MakeMenu()
 <?php
 }
 
+function MakeConversationPane()
+{
+	$users = new Users();
+	$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
+	
+	?>
+	
+			<div class="d-none d-xl-block col-xl-2 bd-toc sidebar">
+				<ul class="nav flex-column menu">
+	  				<li class="nav-item">
+    					<span class="header">Conversations</span>
+	  				</li>
+					
+					<?php 
+						
+						$allFriends = $users->GetFriends($user['ID']);
+				
+						if ($allFriends != NULL)
+						{						
+							for ($i = 0; $i < sizeof($allFriends); $i++)
+							{
+								$friend = $allFriends[$i];
+								
+								$friendInfo = $users->GetUserByID($friend);
+								$friendName = $friendInfo['FirstName'] . " " .  $friendInfo['LastName'];
+														
+								echo "<li class=\"nav-item\">";
+    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . ".php\">" . $friendName . "</a>";
+  								echo "</li>";
+								
+							}
+						}
+						
+					?>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<?php
+}
+
 function MakeFooter()
 {
 ?>

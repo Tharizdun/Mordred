@@ -18,4 +18,6 @@ MakeMenu();
 
 
 <?php
+
+	MakeConversationPane();
 }

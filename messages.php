@@ -28,4 +28,6 @@ MakeMenu();
 
 
 <?php
+
+	MakeConversationPane();
 }

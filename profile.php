@@ -73,7 +73,7 @@ else
 	MakeMenu();
 
 ?>
-	<div class="user">
+	<main class="user">
 		<h1 class="name"><?php echo $user['FirstName'] . " " .  $user['LastName']; ?></h1>
 		
 		<?php 		
@@ -106,21 +106,23 @@ else
 		
 			<hr>
 			
-			<h3>What are you doing today?</h3>
+		<?php	
+			echo "<h3>What are you doing today?</h3>";
 			
-		<?php	
-				echo "<form class=\"homepage-post\" action=\"profile.php?id=" . $id . "\" method=\"post\">"
-		?>
-					<div class="post-part">
-						<textarea type="text" class="post-item" name="message" placeholder="Post message"></textarea>
-					</div>
-					<div class="post-part">
-						<input type="submit" value="Post" class="post-button">
-					</div>
-				</form>
+			if ($isOwner)
+			{
+				echo "<form class=\"homepage-post\" action=\"profile.php?id=" . $id . "\" method=\"post\">";
+				echo "	<div class=\"post-part\">";
+				echo "		<textarea type=\"text\" class=\"post-item\" name=\"message\" placeholder=\"Post message\"></textarea>";
+				echo "	</div>";
+				echo "	<div class=\"post-part\">";
+				echo "		<input type=\"submit\" value=\"Post\" class=\"post-button\">";
+				echo "	</div>";
+				echo "</form>";
 				
-				<hr>
-		<?php	
+				echo "<hr>";
+			}
+				
 			$posts = new Posts();
 				
 				$allPosts = $posts->GetPosts($user['Email'], False)->fetchAll();
@@ -160,6 +162,8 @@ else
 				}
 		
 		?>
-	</div>
+	</main>
 <?php
+
+	MakeConversationPane();
 }
