@@ -1,10 +1,12 @@
 <?php
 
+require_once "Users.php";
+
 session_start();
 
 function MakeHeader($title, $bodyClass)
 {
-header('Content-type: text/html; charset=utf-8');
+
 ?>
 <!DOCTYPE html> 
     <html lang="cs">
@@ -26,7 +28,9 @@ header('Content-type: text/html; charset=utf-8');
 }
 
 function MakeMenu()
-{
+{	
+	$users = new Users();
+
 ?>
 		<nav class="navbar sticky-top navbar-expand-lg  navbar-horizontal">
   		<a class="navbar-brand logo" href="homepage.php">MyFIT</a>
@@ -56,15 +60,30 @@ function MakeMenu()
 	<div class="container-fluid">
 		<div class="row flex-xl-nowrap">
   			<div class="col-12 col-md-3 col-xl-2 bd-sidebar sidebar">
-    			<ul class="nav flex-column">
+    			<ul class="nav flex-column menu">
   					<li class="nav-item">
-    					<a class="nav-link active" href="homepage.php">News feed</a>
+    					<span class="header">Explore</span>
   					</li>
   					<li class="nav-item">
-					    <a class="nav-link" href="messages.php">Messages</a>
+	    				<a class="nav-link active" href="profile.php">
+						<?php 
+						
+						$userName = $users->GetUserInfo($_SESSION['email'], "FirstName, LastName");
+						echo $userName['FirstName'] . " " .  $userName['LastName'];
+						
+						?>						
+						</a>
   					</li>
   					<li class="nav-item">
-    					<a class="nav-link" href="settings.php">Settings</a>
+	    				<a class="nav-link active" href="homepage.php">News feed</a>
+  					</li>
+				</ul>
+				<ul class="nav flex-column menu">
+	  				<li class="nav-item">
+    					<span class="header">Friends</span>
+	  				</li>
+  					<li class="nav-item">
+    					<a class="nav-link active" href="homepage.php">Bajkař ... :Kappa:</a>
   					</li>
 				</ul>
 			</div>

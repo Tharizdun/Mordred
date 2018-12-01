@@ -187,6 +187,22 @@ textArea:focus
 	font-weight:bold;
 }
 
+.user-name
+{
+	margin:25px;
+}
+
+.menu
+{
+	margin-bottom:15px;
+}
+
+.menu .header
+{
+	font-size:1.5rem;
+	margin:0px
+}
+
 .post
 {
 	width:50%;
