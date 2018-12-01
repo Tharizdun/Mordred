@@ -16,7 +16,7 @@ hr
 
 body#homepage
 {
-	background-color:rgb(60, 60, 60);
+	background-color:rgb(45, 45, 45);
 	color:white;
 }
 
@@ -55,10 +55,52 @@ a.dark:hover
 	color:yellow;
 }
 
+a.nav-link
+{
+       color:whiteSmoke; 
+}
+
 .sidebar
 {
 	border-right:1px solid grey;
 	padding-top:20px;
+        background-color: rgb(35,35,35); 
+}
+.sidebar .nav-link
+{
+    background-image: linear-gradient(to right, rgb(35,35,35), rgb(45,45,45), rgb(35,35,35));
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2px;
+}
+.sidebar .nav-link:hover
+{
+    background-image: linear-gradient(to right, rgb(35,35,35), rgb(55,55,55), rgb(35,35,35));
+}
+.navbar-horizontal
+{
+    background-color: rgb(30,30,30);
+}
+
+.navbar-horizontal a
+{
+    color: whiteSmoke;
+}
+
+.navbar-horizontal .nav-link:hover
+{
+    background-color: rgb(45,45,45);
+}
+textArea
+{
+    background-color: rgb(40,40,40);
+    padding-left: 10px;
+    resize: none;
+    color: whiteSmoke;
+}
+textArea:focus
+{
+    outline: none;
 }
 
 #okno
