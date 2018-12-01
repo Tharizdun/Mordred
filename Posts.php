@@ -27,9 +27,23 @@ class Posts
 		}
 	}
 	
-	function GetPosts($email)
-	{		
-		$allPosts = $this->dbc->Select("Posts", "*", "Deleted <> 1");
+	function GetPosts($email, $includeFriends = true)
+	{
+		$userID = $this->users->GetUserInfo($email, "ID");
+		
+		$friendPosts = "";
+		
+		if ($includeFriends)
+		{
+			$friendList = $this->users->GetFriends($userID['ID']);
+			
+			foreach ($friendList as $friend)
+			{
+				$friendPosts .= "OR IDUser = '" . $friend . "'";
+			}
+		}
+		
+		$allPosts = $this->dbc->Select("Posts", "*", "Deleted <> 1 AND (IDUser = '" . $userID['ID'] . "'" . $friendPosts . ")");
 		
 		return $allPosts;
 	}

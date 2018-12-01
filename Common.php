@@ -4,6 +4,7 @@ require_once "Users.php";
 
 session_start();
 
+
 function MakeHeader($title, $bodyClass)
 {
 header('Content-type: text/html; charset=utf-8');

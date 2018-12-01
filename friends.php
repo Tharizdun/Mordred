@@ -1,7 +1,7 @@
 <?php
 
 require_once "Common.php";
-require_once "Posts.php";
+require_once "Users.php";
 
 $id = -1;	
 		
@@ -9,16 +9,6 @@ $users = new Users();
 
 $isAdmin = $users->GetUserInfo($_SESSION['email'], "ID, Admin");
 $currentUserID = $isAdmin['ID'];
-
-if (!empty($_POST)) 
-{
-    $message = $_POST['message'];
-    $email = $_SESSION['email'];
-	
-	$posts = new Posts();
-	
-	$posts->AddPost($email, $message);
-}
 
 if (!empty($_GET))
 {
@@ -57,7 +47,7 @@ else
 
 	if ($id == -1)
 	{
-		$user = $users->GetUserInfo($_SESSION['email'], "ID, Email, FirstName, LastName");
+		$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
 		$isOwner = $isOwner || True;
 	}
 	else
@@ -100,64 +90,11 @@ else
 			}
 			
 			echo "</div>";
-		?>
-		
-			<hr>
+			echo "<hr>";
 			
-			<h3>What are you doing today?</h3>
 			
-		<?php	
-				echo "<form class=\"homepage-post\" action=\"profile.php?id=" . $id . "\" method=\"post\">"
-		?>
-					<div class="post-part">
-						<textarea type="text" class="post-item" name="message" placeholder="Post message"></textarea>
-					</div>
-					<div class="post-part">
-						<input type="submit" value="Post" class="post-button">
-					</div>
-				</form>
-				
-				<hr>
-		<?php	
-			$posts = new Posts();
-				
-				$allPosts = $posts->GetPosts($user['Email'])->fetchAll();
-				
-				if ($allPosts != NULL)
-				{						
-					$users = new Users();
-					
-					$allPosts = array_reverse($allPosts);
-					
-					$isUserAdmin = $users->GetUserInfo($_SESSION['email'], "Admin");
-					$isUserAdmin = $isUserAdmin['Admin'];
-						
-					for ($i = 0; $i < sizeof($allPosts); $i++)
-					{
-						$post = $allPosts[$i];
-						
-						$userInfo = $users->GetUserByID($post['IDUser']);
-						$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
-						
-						$owner = $userInfo['Email'] == $_SESSION['email'];
-						
-						echo "<div class=\"post\">";
-						echo "	<p class=\"title\">";
-						echo "		<span class=\"author\">" . $userName . "</a></span>";
-						echo "		<span class=\"time\">" . $post['Time'] . "</span>";
-						echo "	</p>";
-						echo "	<div class=\"message\">";
-						echo $post['Message'];
-						echo "	</div>";
-						
-						if ($owner || $isUserAdmin)
-							echo "<a href=\"homepage.php?action=delete&id=" . $post['ID'] . "\" type=\"button\" class=\"btn btn-primary manage\">Delete post</a>";
-						
-						echo "</div>";
-					}
-				}
-		
-		?>
+			
+			?>
 	</div>
 <?php
 }

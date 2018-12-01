@@ -190,6 +190,7 @@ textArea:focus
 .user
 {
 	margin:25px;
+	width:100%
 }
 
 .user .name
@@ -250,6 +251,15 @@ textArea:focus
 	margin-left:10%;
 	margin-right:10%;
 	margin-bottom:20px;
+}
+
+.homepage
+{
+	margin:25px;
+	padding-top:0px !important;
+	padding-left:0px !important;
+	padding-right:0px !important;
+	padding-bottom:0px !important;
 }
 
 .homepage-post

@@ -41,7 +41,9 @@ MakeMenu();
 
 ?>
 			
-			<div class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content">
+			<div class="col-12 col-md-9 col-xl-10 py-md-3 pl-md-5 bd-content homepage">
+				<h1>What are you doing today?</h1>
+			
 				<form class="homepage-post" method="post" action="homepage.php">
 					<div class="post-part">
 						<textarea type="text" class="post-item" name="message" placeholder="Post message"></textarea>
@@ -57,7 +59,7 @@ MakeMenu();
 				
 				$posts = new Posts();
 				
-				$allPosts = $posts->GetPosts($_SESSION["email"])->fetchAll();
+				$allPosts = $posts->GetPosts($_SESSION["email"], True)->fetchAll();
 				
 				if ($allPosts != NULL)
 				{						

@@ -14,7 +14,7 @@ class DBConnect
 	{		
 		try
 		{
-		    $pdo = new PDO("mysql:host=localhost;dbname=xzedni12;port=/var/run/mysql/mysql.sock", 'xzedni12', '6ufisapu');
+		    $pdo = new PDO("mysql:host=localhost;dbname=xzedni12;port=/var/run/mysql/mysql.sock", 'xzedni12', '6ufisapu', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 		    return $pdo;
 		}
 		catch (PDOException $e)
@@ -44,7 +44,7 @@ class DBConnect
 			else
 				$wherePart = "";
 				
-			$result = $this->pdo->query("SELECT " . $columns . " FROM " . $table . $wherePart . " LIMIT 100");
+			$result = $this->pdo->query("SELECT " . $columns . " FROM " . $table . $wherePart);
 			
 			return $result;
 		}
