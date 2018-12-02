@@ -132,7 +132,8 @@ MakeMenu();
 ?>
 
 <div class="messages">
-	<div class="messageHeader">
+    <div class="messageWindow">
+	
         <?php
 		
 		$convUsers = $convs->GetUsersForConversations($conversationID);
@@ -151,10 +152,7 @@ MakeMenu();
 		}
 		
 		echo "<h2>Chat: " . substr($header, 0, strlen($header) - 2) . "</h2>";
-		?>
-    </div>
-    <div  class="messageWindow">
-<?php
+
         $allMessages = $convs->GetMessages($conversationID);
 
         if ($allMessages != NULL)
@@ -172,7 +170,7 @@ MakeMenu();
                         echo "		<span class=\"time\">" . $message['Time'] . "</span>";
                         echo "	</p>";
                         echo "	<div class=\"message\">";
-                        echo $convs->GetTag($message['Message']);
+                        echo $message['Message'];
                         echo "	</div>";
                         echo "</div>";
                 }

@@ -2,13 +2,11 @@
 
 require_once "Common.php";
 require_once "Searching.php";
-require_once "Conversations.php";
 
 $id = -1;	
 		
 $users = new Users();
 $search = new Searching();
-$convs = new Conversations();
 
 $isAdmin = $users->GetUserInfo($_SESSION['email'], "ID, Admin");
 $currentUserID = $isAdmin['ID'];
@@ -83,7 +81,7 @@ else
 						echo "		<span class=\"time\">" . $post['Time'] . "</span>";
 						echo "	</p>";
 						echo "	<div class=\"message\">";
-						echo $convs->GetTag($post['Message']);
+						echo $post['Message'];
 						echo "	</div>";
 						
 						echo "</div>";
