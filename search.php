@@ -31,7 +31,7 @@ else
 ?>
 	
 	<div class="search">
-	
+	<h2> Searching: <?php echo $searchQuery; ?></h2>
 		<h4>Users</h4>
 		
 				<?php
