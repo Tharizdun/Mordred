@@ -10,6 +10,17 @@ $currentUserID = $users->GetUserInfo($_SESSION['email'], "ID");
 $currentUserID = $currentUserID['ID'];
 $convs = new Conversations();
 
+/*require 'TaskRunner.php';
+$task = new TaskRunner();
+$task->config(array(
+		'syncInterval'=>1,
+		'taskName'=>'MessageRefresh'
+));
+
+$task->run(function(){
+	echo "Task Ran";
+});*/
+
 if (!empty($_POST)) 
 {
     $message = $_POST['message'];
@@ -73,6 +84,10 @@ if (!empty($_GET))
 		}
 	}
 }
+
+$page = "messages?convID=" . $conversationID;
+$sec = "15";
+header("Refresh: $sec; url=$page");
 
 if (!isset($_SESSION['email']))
 {

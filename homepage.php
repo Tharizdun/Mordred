@@ -28,6 +28,10 @@ if (!empty($_GET))
 	}
 }
 
+$page = "homepage";
+$sec = "30";
+header("Refresh: $sec; url=$page");
+
 if (!isset($_SESSION['email']))
 {
     redirect('index');
