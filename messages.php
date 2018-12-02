@@ -102,7 +102,7 @@ MakeMenu();
 
 ?>
 
-<div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content messages">
+<div class="messages">
     <div class="messageWindow">
         <?php
 

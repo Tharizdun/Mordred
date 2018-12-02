@@ -68,12 +68,14 @@ a.nav-link
 
 .sidebar
 {
-	border-right:1px solid grey;
-	padding-top:25px;
-    background-color: rgb(35,35,35);        
-	flex-flow: column; 
-	min-height: 100vh;
+        padding-top: 25px;
+        padding-left: 10px;
+        background-color: rgb(35,35,35);        
+	height:calc(100vh - 62px);
+        width: 20%;
+        float: left;
 }
+
 .sidebar .nav-link
 {
     background-image: linear-gradient(to right, rgb(35,35,35), rgb(45,45,45), rgb(35,35,35));
@@ -88,6 +90,9 @@ a.nav-link
 .navbar-horizontal
 {
     background-color: rgb(30,30,30);
+    position:fixed;
+    width: 100%;
+    height:62px;
 }
 
 .navbar-horizontal a
@@ -273,7 +278,8 @@ textArea:focus
 .homepage-post
 {
 	width:50%;
-	height:100px
+	height:100px;
+            
 }
 
 .homepage-post .post-part
@@ -308,11 +314,12 @@ textArea:focus
 
 .messages
 {
-	margin:25px;
 	padding-top:0px !important;
 	padding-left:0px !important;
 	padding-right:0px !important;
 	padding-bottom:0px !important;
+        width: 60%;
+        float: left;
 }
 
 .messages .separator
@@ -322,18 +329,33 @@ textArea:focus
         margin-left:auto;
 }
 
+.messages .separator2
+{
+	width:95%;
+        margin-right:auto;
+        margin-left:auto;
+        margin-top:20px;
+        margin-bottom:20px;
+}
+
 .messages .chatArea
 {
         width: 100%;
-	position:absolute;
         bottom:0px;
+        height:120px;
+}
+.messages .chatArea2
+{
+        width: 100%;
+        height:90px;
 }
 .messages .messageWindow
 {
+        padding-top:10px;
         margin-right:auto;
         margin-left: auto;
         width: 90%;
-	height:80vh;
+	height:calc(100vh - 182px);
         overflow:scroll;
         -ms-overflow-style: none;
 }
@@ -457,5 +479,24 @@ textArea:focus
 {
 	margin: 0;
 	color: rgb(200,200,200);	
+}
+
+.mainContentArea
+{
+    width:100%;
+    min-width: 1024px;
+    margin-top: 62px;
+    height: calc(100vh - 62px);
+    overflow: hidden;
+}
+
+.borderLeft
+{
+    border-left: 1px solid grey;
+}
+
+.borderRight
+{
+    border-right: 1px solid grey;
 }
 
