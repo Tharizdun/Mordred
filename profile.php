@@ -73,8 +73,8 @@ else
 	MakeMenu();
 
 ?>
-	<main class="profile">
-		<h1 class="name separator2"><?php echo $user['FirstName'] . " " .  $user['LastName']; ?></h1>
+	<main class="user">
+		<h1 class="name"><?php echo $user['FirstName'] . " " .  $user['LastName']; ?></h1>
 		
 		<?php 		
 			
@@ -104,24 +104,25 @@ else
 			echo "</div>";
 		?>
 		
-			<hr class="separator2">
+			<hr>
 			
 		<?php	
-			echo "<h3 class='separator2'>What are you doing today?</h3>";
+			echo "<h3>What are you doing today?</h3>";
 			
 			if ($isOwner)
 			{
-                                echo "<div class=\"chatArea2\">";
-				echo "<form class=\"messages-post\" action=\"profile?id=" . $id . "\" method=\"post\">";
-				echo "		<textarea type=\"text\" class=\"input-area\" name=\"message\" placeholder=\"Post message\"></textarea>";
-				echo "		<input type=\"submit\" value=\"Post\" class=\"post-button\">";
-				echo "</form>";
+				echo "<form class=\"homepage-post\" action=\"profile?id=" . $id . "\" method=\"post\">";
+				echo "	<div class=\"post-part\">";
+				echo "		<textarea type=\"text\" class=\"post-item\" name=\"message\" placeholder=\"Post message\"></textarea>";
 				echo "	</div>";
-				echo "<hr class='separator2'>";
+				echo "	<div class=\"post-part\">";
+				echo "		<input type=\"submit\" value=\"Post\" class=\"post-button\">";
+				echo "	</div>";
+				echo "</form>";
+				
+				echo "<hr>";
 			}
-                        
-			echo "	<div class=\"messageWindow\">";
-                        
+				
 			$posts = new Posts();
 				
 				$allPosts = $posts->GetPosts($user['Email'], False);
@@ -159,7 +160,6 @@ else
 						echo "</div>";
 					}
 				}
-                        echo "	</div>";
 		
 		?>
 	</main>
