@@ -83,6 +83,9 @@ function MakeMenu()
   					<li class="nav-item">
 	    				<a class="nav-link active" href="homepage">News feed</a>
   					</li>
+  					<li class="nav-item">
+	    				<a class="nav-link" href="events">Events</a>
+  					</li>
 				</ul>
 				<ul class="nav flex-column menu">
 	  				<li class="nav-item">
@@ -179,6 +182,8 @@ function MakeConversationPane()
 								
 							}
 						}
+						
+						echo "<a href=\"createConversation\" type=\"button\" class=\"btn btn-primary manage\">Create conversation</a>";
 						
 					?>
 				</ul>
