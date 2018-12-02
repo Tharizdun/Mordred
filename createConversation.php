@@ -50,7 +50,7 @@ else
 							
 							echo "<div class=\"post\">";
 							echo "	<p class=\"title\">";
-							echo "		<span class=\"author\"><a href=\"createConversation?userIDs=" . $selectedUsers . "," . $user['ID'] . "\">" . $userName . "</a></span>";
+							echo "		<span class=\"author\"><a href=\"createConversation?userIDs=" . $selectedUsers . ($selectedUsers == "" ? "" : ",") . $user['ID'] . "\">" . $userName . "</a></span>";
 							echo "	</p>";				
 							echo "</div>";
 						}

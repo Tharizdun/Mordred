@@ -52,36 +52,65 @@ if (!empty($_POST))
 
 if (!empty($_GET))
 {
-	if (isset($_GET['id']))
+	if (isset($_GET['userIDs']) && isset($_GET['action']))
 	{
-		$userID = $_GET['id'];
-		
-		$conversationID =  $convs->GetConversationForUser($userID, $currentUserID);
-		
-		if ($conversationID == -1)
+		if ($_GET['userIDs'] != "" && $_GET['action'] != "")
 		{
-			$conversationID = $convs->CreateConversation($currentUserID);
-			$convs->AddConvUser($userID, $conversationID);
-		}		
+			switch ($_GET['action'])
+			{
+				case 'create':
+					
+					$userIDs = explode(',', $_GET['userIDs']);
+			
+					$conversationID =  $convs->GetConversationForUsers($userIDs, $currentUserID);
+			
+					if ($conversationID == -1)
+					{
+						$conversationID = $convs->CreateConversation($currentUserID);
+						
+						foreach($userIDs as $convUser)
+							$convs->AddConvUser($convUser, $conversationID);
+					}
+					
+					redirect('messages?convID=' . $conversationID);
+					
+					break;
+			}
+		}
 	}
-	
-	if (isset($_GET['convID']))
+	else
 	{
-		$conversationID = $_GET['convID'];		
-		
-		$userConvs = $convs ->GetAllUserConversations($currentUserID);
-		
-		$goHome = True;
-		
-		if (in_array($conversationID, $userConvs))
+		if (isset($_GET['id']))
 		{
-			$goHome = False;
-		}
+			$userID = $_GET['id'];
+			
+			$conversationID =  $convs->GetConversationForUser($userID, $currentUserID);
+			
+			if ($conversationID == -1)
+			{
+				$conversationID = $convs->CreateConversation($currentUserID);
+				$convs->AddConvUser($userID, $conversationID);
+			}		
+		}	
 		
-		if ($goHome)
-		{
-    		redirect('homepage');
-		}
+		if (isset($_GET['convID']))
+		{	
+			$conversationID = $_GET['convID'];		
+			
+			$userConvs = $convs ->GetAllUserConversations($currentUserID);
+			
+			$goHome = True;
+			
+			if (in_array($conversationID, $userConvs))
+			{
+				$goHome = False;
+			}
+			
+			if ($goHome)
+			{
+    			redirect('homepage');
+			}
+		}	
 	}
 }
 
