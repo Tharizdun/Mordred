@@ -62,8 +62,17 @@ a.nav-link
 
 .search
 {
-	margin:25px;
-	width:100%
+        padding: 25px;
+	width: 60%;
+        float:left;
+        overflow: scroll;
+        -ms-overflow-style: none;
+        height: calc(100vh - 62px);
+}
+
+.search::-webkit-scrollbar
+{
+    display:none;
 }
 
 .sidebar
