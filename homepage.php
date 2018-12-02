@@ -74,10 +74,8 @@ MakeMenu();
 					$isUserAdmin = $users->GetUserInfo($_SESSION['email'], "Admin");
 					$isUserAdmin = $isUserAdmin['Admin'];
 						
-					for ($i = 0; $i < sizeof($allPosts); $i++)
+					foreach($allPosts as $post)
 					{
-						$post = $allPosts[$i];
-						
 						$userInfo = $users->GetUserByID($post['IDUser']);
 						$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
 						
