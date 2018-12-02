@@ -2,19 +2,11 @@
 
 require_once "Common.php";
 require_once "Searching.php";
-<<<<<<< HEAD
-=======
-require_once "Conversations.php";
->>>>>>> parent of 0bf2ed9... Profile layout changes
 
 $id = -1;	
 		
 $users = new Users();
 $search = new Searching();
-<<<<<<< HEAD
-=======
-$convs = new Conversations();
->>>>>>> parent of 0bf2ed9... Profile layout changes
 
 $isAdmin = $users->GetUserInfo($_SESSION['email'], "ID, Admin");
 $currentUserID = $isAdmin['ID'];
@@ -89,11 +81,7 @@ else
 						echo "		<span class=\"time\">" . $post['Time'] . "</span>";
 						echo "	</p>";
 						echo "	<div class=\"message\">";
-<<<<<<< HEAD
 						echo $post['Message'];
-=======
-						echo $convs->GetTag($post['Message']);
->>>>>>> parent of 0bf2ed9... Profile layout changes
 						echo "	</div>";
 						
 						echo "</div>";

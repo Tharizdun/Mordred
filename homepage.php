@@ -2,10 +2,6 @@
 
 require_once "Common.php";
 require_once "Posts.php";
-<<<<<<< HEAD
-=======
-require_once "Conversations.php";
->>>>>>> parent of 0bf2ed9... Profile layout changes
 
 if (!empty($_POST)) 
 {
@@ -66,10 +62,6 @@ MakeMenu();
 				<?php
 				
 				$posts = new Posts();
-<<<<<<< HEAD
-=======
-				$convs = new Conversations();
->>>>>>> parent of 0bf2ed9... Profile layout changes
 				
 				$allPosts = $posts->GetPosts($_SESSION["email"]);
 				
@@ -95,11 +87,7 @@ MakeMenu();
 						echo "		<span class=\"time\">" . $post['Time'] . "</span>";
 						echo "	</p>";
 						echo "	<div class=\"message\">";
-<<<<<<< HEAD
 						echo $post['Message'];
-=======
-						echo $convs->GetTag($post['Message']);
->>>>>>> parent of 0bf2ed9... Profile layout changes
 						echo "	</div>";
 						
 						if ($owner || $isUserAdmin)
