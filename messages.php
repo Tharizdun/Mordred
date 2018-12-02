@@ -132,8 +132,12 @@ MakeMenu();
 ?>
 
 <div class="messages">
+<<<<<<< HEAD
     <div class="messageWindow">
 	
+=======
+	<div class="messageHeader">
+>>>>>>> parent of 0bf2ed9... Profile layout changes
         <?php
 		
 		$convUsers = $convs->GetUsersForConversations($conversationID);
@@ -152,7 +156,14 @@ MakeMenu();
 		}
 		
 		echo "<h2>Chat: " . substr($header, 0, strlen($header) - 2) . "</h2>";
+<<<<<<< HEAD
 
+=======
+		?>
+    </div>
+    <div  class="messageWindow">
+<?php
+>>>>>>> parent of 0bf2ed9... Profile layout changes
         $allMessages = $convs->GetMessages($conversationID);
 
         if ($allMessages != NULL)
@@ -170,7 +181,11 @@ MakeMenu();
                         echo "		<span class=\"time\">" . $message['Time'] . "</span>";
                         echo "	</p>";
                         echo "	<div class=\"message\">";
+<<<<<<< HEAD
                         echo $message['Message'];
+=======
+                        echo $convs->GetTag($message['Message']);
+>>>>>>> parent of 0bf2ed9... Profile layout changes
                         echo "	</div>";
                         echo "</div>";
                 }

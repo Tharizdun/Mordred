@@ -140,6 +140,60 @@ class Conversations
 		$query = "INSERT INTO `xzedni12`.`Messages` (`ID`, `IDSender`, `IDConversation`, `Time`, `Message`) VALUES (NULL, '" . $id . "', '" . $convID . "', CURRENT_TIMESTAMP, '" . $message . "');";
 		$this->dbc->DoQuery($query);
 	}
+<<<<<<< HEAD
+=======
+	
+	function GetTag($message)
+	{
+		$tagMessage = $message;
+		$restMessage = $message;
+		
+		while(strpos($restMessage, "~") !== False)
+		{
+			$sub = substr($restMessage, strpos($restMessage, "~"), strlen($restMessage) - strpos($restMessage, "~") + 1);
+			
+			if (strpos($sub, " ") !== False)
+				$sub = substr($sub, 0, strpos($sub, " "));
+			else 
+			{
+				$reverseSub = strrev($sub);
+				
+				if (strpos($reverseSub, "~") !== False)
+				{
+					$endPosition = strpos($reverseSub, "~");
+				
+					while ($endPosition != strlen($sub) -1)
+					{
+						if (strpos($reverseSub, "~") == strpos($sub, "~"))
+							$sub = substr($sub, 0, strlen($sub) - 1);
+						else
+							$sub = substr($sub, 0, strlen($sub) - strpos($reverseSub, "~") - 1);
+						
+						
+						$reverseSub = strrev($sub);
+						$endPosition = strpos($reverseSub, "~");
+					}
+				}
+			}
+			
+			$user = $this->users->GetUserInfo(substr($sub, 1, strlen($sub) - 1));
+			
+			if ($user == NULL)
+			{
+				$restMessage = substr($restMessage, 1, strlen($restMessage) - 1);
+				continue;
+			}
+			
+			$tag = "<a href=\"profile?id=" . $user['ID'] . "\">" . $user['FirstName'] . " " . $user['LastName'] . "</a>";
+			
+			$tagMessage = str_replace($sub, $tag, $tagMessage);
+			
+			$restMessage = substr($restMessage, strpos($restMessage, "~") + 1);
+		}
+		
+		return $tagMessage;
+	}
+>>>>>>> parent of 0bf2ed9... Profile layout changes
 }
 
 
