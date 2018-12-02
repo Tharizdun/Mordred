@@ -89,6 +89,40 @@ class Users
 		}
 	}
 	
+	function GetOnlineFriends($id, $online = True)
+	{	
+			$allFriends = $this->GetFriends($id);
+			$allOnlineFriends = array();
+			
+			$result = $this->dbc->Select("Online", "IDUser")->FetchAll();
+			
+			if ($result != NULL)
+			{
+				if (!$online)
+						$allOnlineFriends = $allFriends;
+			
+				foreach ($result as $friend)
+				{
+					if ($online)
+					{
+						if (in_array($friend[0], $allFriends))
+							array_push($allOnlineFriends, $friend[0]);
+					}
+					else
+					{
+						if (in_array($friend[0], $allFriends))
+						{
+							$key = array_search($friend[0], $allFriends);
+							
+							unset($allOnlineFriends[$key]);
+						}
+					}
+				}
+			}
+			
+			return $allOnlineFriends;
+	}
+	
 	function SwitchFriend($id, $owner, $addFriend = true)
 	{	
 		if ($addFriend)

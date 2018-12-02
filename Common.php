@@ -91,7 +91,34 @@ function MakeMenu()
 					
 					<?php 
 						
-						$allFriends = $users->GetFriends($user['ID']);
+						$allFriends = $users->GetOnlineFriends($user['ID']);
+				
+						if ($allFriends != NULL)
+						{						
+							for ($i = 0; $i < sizeof($allFriends); $i++)
+							{
+								$friend = $allFriends[$i];
+								
+								$friendInfo = $users->GetUserByID($friend);
+								$friendName = $friendInfo['FirstName'] . " " .  $friendInfo['LastName'];
+														
+								echo "<li class=\"nav-item\">";
+    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . ".php\">" . $friendName . "</a>";
+  								echo "</li>";
+								
+							}
+						}
+						
+					?>
+				</ul>
+				<ul class="nav flex-column menu">
+	  				<li class="nav-item">
+    					<span class="header">Offline friends</span>
+	  				</li>
+					
+					<?php 
+						
+						$allFriends = $users->GetOnlineFriends($user['ID'], False);
 				
 						if ($allFriends != NULL)
 						{						
