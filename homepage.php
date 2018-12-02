@@ -2,6 +2,7 @@
 
 require_once "Common.php";
 require_once "Posts.php";
+require_once "Conversations.php";
 
 if (!empty($_POST)) 
 {
@@ -62,6 +63,7 @@ MakeMenu();
 				<?php
 				
 				$posts = new Posts();
+				$convs = new Conversations();
 				
 				$allPosts = $posts->GetPosts($_SESSION["email"]);
 				
@@ -87,7 +89,7 @@ MakeMenu();
 						echo "		<span class=\"time\">" . $post['Time'] . "</span>";
 						echo "	</p>";
 						echo "	<div class=\"message\">";
-						echo $post['Message'];
+						echo $convs->GetTag($post['Message']);
 						echo "	</div>";
 						
 						if ($owner || $isUserAdmin)

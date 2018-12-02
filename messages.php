@@ -170,7 +170,7 @@ MakeMenu();
                         echo "		<span class=\"time\">" . $message['Time'] . "</span>";
                         echo "	</p>";
                         echo "	<div class=\"message\">";
-                        echo $message['Message'];
+                        echo $convs->GetTag($message['Message']);
                         echo "	</div>";
                         echo "</div>";
                 }
