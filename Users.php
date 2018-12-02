@@ -126,7 +126,12 @@ class Users
 	function SwitchFriend($id, $owner, $addFriend = true)
 	{	
 		if ($addFriend)
-		{			
+		{
+			$allFriends = $this->GetFriends($owner);
+				
+			if (in_array($id, $allFriends))
+				return;
+			
 			$query = "INSERT INTO `xzedni12`.`Friends` (`ID` ,`IDUser1` ,`IDUser2` ) VALUES (NULL , '" . $id . "', '" . $owner . "');";
 			$this->dbc->DoQuery($query);
 		}
