@@ -34,6 +34,34 @@ class Conversations
 		return -1;
 	}
 	
+	function GetConversationForUsers($ids, $currentUserID)
+	{
+		$conversations = array();
+	
+		$result = $this->dbc->Select("ConversationsUsers", "IDConversation", "IDUser = '" . $currentUserID . "'")->FetchAll();
+		
+		foreach($result as $conv)
+		{
+			$conversation = $this->GetUsersForConversations($conv[0]);
+			
+			$conversationExist = true;
+			
+			if (sizeof($conversation) == sizeof($ids) + 1)
+			{
+				foreach($ids as $user)
+				{
+					if (!in_array($user, $conversation))
+						$conversationExist = false;
+				}
+				
+				if ($conversationExist)
+					return $conv[0];
+			}
+		}
+		
+		return -1;
+	}
+	
 	function GetUsersForConversations($convID)
 	{
 		$convUsers = array();

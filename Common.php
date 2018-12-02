@@ -29,6 +29,8 @@ header('Content-type: text/html; charset=utf-8');
 
 function MakeMenu()
 {	
+	MakeOnline();
+	
 	$users = new Users();
 	$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
 
@@ -81,6 +83,9 @@ function MakeMenu()
   					</li>
   					<li class="nav-item">
 	    				<a class="nav-link active" href="homepage">News feed</a>
+  					</li>
+  					<li class="nav-item">
+	    				<a class="nav-link" href="events">Events</a>
   					</li>
 				</ul>
 				<ul class="nav flex-column menu">
@@ -178,6 +183,8 @@ function MakeConversationPane()
 								
 							}
 						}
+						
+						echo "<a href=\"createConversation\" type=\"button\" class=\"btn btn-primary manage\">Create conversation</a>";
 						
 					?>
 				</ul>
