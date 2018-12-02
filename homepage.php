@@ -63,7 +63,7 @@ MakeMenu();
 				
 				$posts = new Posts();
 				
-				$allPosts = $posts->GetPosts($_SESSION["email"])->fetchAll();
+				$allPosts = $posts->GetPosts($_SESSION["email"]);
 				
 				if ($allPosts != NULL)
 				{						
@@ -97,7 +97,7 @@ MakeMenu();
 					}
 				}
 				
-				?>			
+				?>
 				
 			</div>
 

@@ -155,6 +155,11 @@ class Users
 			$this->dbc->Delete("Online", "IDUser='" . $user['ID'] . "'");
 		}
 	}
+	
+	function GetAllusers()
+	{
+		
+	}
 }
 
 

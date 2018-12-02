@@ -43,9 +43,12 @@ class Posts
 			}
 		}
 		
-		$allPosts = $this->dbc->Select("Posts", "*", "Deleted <> 1 AND (IDUser = '" . $userID['ID'] . "'" . $friendPosts . ")");
-		
-		return $allPosts;
+		return $this->dbc->Select("Posts", "*", "Deleted <> 1 AND (IDUser = '" . $userID['ID'] . "'" . $friendPosts . ")")->FetchAll();
+	}
+	
+	function GetAllPosts()
+	{		
+		return $this->dbc->Select("Posts", "*", "Deleted <> 1")->FetchAll();
 	}
 	
 	function DeletePost($id)

@@ -60,6 +60,12 @@ a.nav-link
        color:whiteSmoke; 
 }
 
+.search
+{
+	margin:25px;
+	width:100%
+}
+
 .sidebar
 {
 	border-right:1px solid grey;

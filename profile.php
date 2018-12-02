@@ -125,7 +125,7 @@ else
 				
 			$posts = new Posts();
 				
-				$allPosts = $posts->GetPosts($user['Email'], False)->fetchAll();
+				$allPosts = $posts->GetPosts($user['Email'], False);
 				
 				if ($allPosts != NULL)
 				{						
