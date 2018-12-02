@@ -29,6 +29,8 @@ header('Content-type: text/html; charset=utf-8');
 
 function MakeMenu()
 {	
+	MakeOnline();
+	
 	$users = new Users();
 	$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
 
