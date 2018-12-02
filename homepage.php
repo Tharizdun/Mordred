@@ -63,7 +63,7 @@ MakeMenu();
 				<?php
 				
 				$posts = new Posts();
-				$convs = new Conversations();
+                                $convs = new Conversations();
 				
 				$allPosts = $posts->GetPosts($_SESSION["email"]);
 				
