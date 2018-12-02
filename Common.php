@@ -66,9 +66,8 @@ function MakeMenu()
   		</div>
 	</nav>
 	
-	<div class="container-fluid">
-		<div class="row flex-xl-nowrap">
-  			<div class="col-12 col-md-3 col-xl-2 bd-sidebar sidebar">
+	<div class="mainContentArea">
+  			<div class="sidebar borderRight">
     			<ul class="nav flex-column menu">
   					<li class="nav-item">
     					<span class="header">Explore</span>
@@ -151,7 +150,7 @@ function MakeConversationPane()
 	
 	?>
 	
-			<div class="d-none d-xl-block col-xl-2 bd-toc sidebar">
+			<div class="sidebar borderLeft">
 				<ul class="nav flex-column menu">
 	  				<li class="nav-item">
     					<span class="header">Conversations</span>
@@ -190,7 +189,6 @@ function MakeConversationPane()
 					?>
 				</ul>
 			</div>
-		</div>
 	</div>
 	
 	<?php

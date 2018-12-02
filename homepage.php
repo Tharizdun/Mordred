@@ -46,20 +46,20 @@ MakeMenu();
 
 ?>
 			
-			<div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content homepage">
-				<h1>What are you doing today?</h1>
-			
-				<form class="homepage-post" method="post" action="homepage">
-					<div class="post-part">
-						<textarea type="text" class="post-item" name="message" placeholder="Post message"></textarea>
-					</div>
-					<div class="post-part">
-						<input type="submit" value="Post" class="post-button">
-					</div>
-				</form>
+			<div class="messages">
+                            <h1 class="separator2">What are you doing today?</h1>
+                                <div class="chatArea2">
+                                    <form class="messages-post" method="post" action="homepage.php">
+                                            <textarea type="text" class="input-area" name="message" placeholder="Post message"></textarea>
+                                            <input type="submit" value="Post" class="post-button">
+                                    </form>
+                                </div>
 				
-				<hr>
-				
+				<div class="separator">
+                                    <hr>
+                                </div>
+             
+				<div class="messageWindow">
 				<?php
 				
 				$posts = new Posts();
@@ -100,7 +100,7 @@ MakeMenu();
 				}
 				
 				?>
-				
+				</div>
 			</div>
 
 <?php
