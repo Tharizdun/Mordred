@@ -328,7 +328,8 @@ textArea:focus
         margin-left: auto;
         width: 90%;
 	height:80vh;
-        overflow:scroll;    
+        overflow:scroll;
+        -ms-overflow-style: none;
 }
 .messages .messageWindow::-webkit-scrollbar
 {
