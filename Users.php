@@ -34,7 +34,7 @@ class Users
 	function GetUserByID($userID)
 	{
 		try
-		{			
+		{
 			$user = $this->dbc->Select("Users", "*", "ID='" . $userID . "'");
 			
 			if (sizeof($user) == 1)
@@ -158,7 +158,7 @@ class Users
 	
 	function GetAllusers()
 	{
-		
+		return $this->dbc->Select("Users")>FetchAll();
 	}
 }
 

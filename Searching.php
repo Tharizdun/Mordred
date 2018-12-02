@@ -15,7 +15,26 @@ class Searching
 	
 	function GetUsers($query)
 	{
+		$searchedUsers = array();
+		$query = strtolower($query);
 		
+		$this->users = new Users();
+		
+		$allUsers = $this->users->GetAllUsers();
+		
+		if ($allUsers != NULL)
+			foreach($allUsers as $user)
+			{
+				$userName = strtolower($user['FirstName'] . " " . $user['LastName']);
+				$userNameReverse = strtolower($user['LastName'] . " " . $user['FirstName']);
+			
+				if ($query == $userName || $query == $userNameReverse || $query == strtolower($user['FirstName']) || $query == strtolower($user['LastName']) || $query == strtolower($user['School']) || $query == strtolower($user['Residence']) || $query == strtolower($user['Phone']) || $query == strtolower($user['Email']) || $query == strtolower($user['Occupation']))
+				{
+					array_push($searchedUsers, $user);
+				}
+			}
+			
+		return $searchedUsers;
 	}
 	
 	function GetPosts($query)
