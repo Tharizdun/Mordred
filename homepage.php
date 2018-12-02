@@ -49,7 +49,7 @@ MakeMenu();
 			<div class="messages">
                             <h1 class="separator2">What are you doing today?</h1>
                                 <div class="chatArea2">
-                                    <form class="messages-post" method="post" action="homepage.php">
+                                    <form class="messages-post" method="post" action="homepage">
                                             <textarea type="text" class="input-area" name="message" placeholder="Post message"></textarea>
                                             <input type="submit" value="Post" class="post-button">
                                     </form>

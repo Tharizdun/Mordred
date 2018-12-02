@@ -141,10 +141,12 @@ class Conversations
 		$this->dbc->DoQuery($query);
 	}
 	
-	function GetTag($message)
+	function GetTag($message, $getMessage = true)
 	{
 		$tagMessage = $message;
 		$restMessage = $message;
+		$taggedUsers = array();
+		$user = "";
 		
 		while(strpos($restMessage, "~") !== False)
 		{
@@ -182,14 +184,24 @@ class Conversations
 				continue;
 			}
 			
-			$tag = "<a href=\"profile?id=" . $user['ID'] . "\">" . $user['FirstName'] . " " . $user['LastName'] . "</a>";
+			if ($getMessage)	
+			{
+				$tag = "<a href=\"profile?id=" . $user['ID'] . "\">" . $user['FirstName'] . " " . $user['LastName'] . "</a>";
 			
-			$tagMessage = str_replace($sub, $tag, $tagMessage);
+				$tagMessage = str_replace($sub, $tag, $tagMessage);
+			}
+			else		
+				if (!in_array($user['ID'], $taggedUsers))
+					array_push($taggedUsers, $user['ID']);
+			
 			
 			$restMessage = substr($restMessage, strpos($restMessage, "~") + 1);
 		}
 		
-		return $tagMessage;
+		if ($getMessage)	
+			return $tagMessage;
+		else
+			return $taggedUsers;
 	}
 }
 
