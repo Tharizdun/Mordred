@@ -4,7 +4,7 @@ require_once "Common.php";
 
 if (!isset($_SESSION['email']))
 {
-    redirect('index.php');
+    redirect('index');
 }
 else
 {

@@ -16,14 +16,13 @@ if (!empty($_POST))
     }
 	else
 	{
-    //	redirect('FuckYou.php');
 	}
 }
 
 if (isset($_SESSION['email']))
 {
 	MakeOnline();
-    redirect('homepage.php');
+    redirect('homepage');
 }
 else
 {
@@ -33,7 +32,7 @@ MakeHeader("Login", "login");
 ?>
 
 	<div id="login-form">
-        <form method="post" action="index.php" id="form" accept-charset="utf-8">
+        <form method="post" action="index" id="form" accept-charset="utf-8">
                 <div class="form header">
                         <p>MyFIT</p>
                 </div>
@@ -51,7 +50,7 @@ MakeHeader("Login", "login");
                 <div class="form-button-group">
                         <input type="submit" class="form-button" value="Log in">
                         <div class="form-button-separator"></div>
-                        <a class="form-button" href="register.php">Register</a>
+                        <a class="form-button" href="register">Register</a>
                 </div>
 
                                 <div class="form footer">

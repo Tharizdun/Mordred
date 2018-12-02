@@ -30,7 +30,7 @@ if (!empty($_GET))
 
 if (!isset($_SESSION['email']))
 {
-    redirect('index.php');
+    redirect('index');
 }
 else
 {
@@ -44,7 +44,7 @@ MakeMenu();
 			<div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content homepage">
 				<h1>What are you doing today?</h1>
 			
-				<form class="homepage-post" method="post" action="homepage.php">
+				<form class="homepage-post" method="post" action="homepage">
 					<div class="post-part">
 						<textarea type="text" class="post-item" name="message" placeholder="Post message"></textarea>
 					</div>
@@ -81,7 +81,7 @@ MakeMenu();
 						
 						echo "<div class=\"post\">";
 						echo "	<p class=\"title\">";
-						echo "		<span class=\"author\"><a href=\"profile.php?id=" . $post['IDUser'] . "\">" . $userName . "</a></span>";
+						echo "		<span class=\"author\"><a href=\"profile?id=" . $post['IDUser'] . "\">" . $userName . "</a></span>";
 						echo "		<span class=\"time\">" . $post['Time'] . "</span>";
 						echo "	</p>";
 						echo "	<div class=\"message\">";
@@ -89,7 +89,7 @@ MakeMenu();
 						echo "	</div>";
 						
 						if ($owner || $isUserAdmin)
-							echo "<a href=\"homepage.php?action=delete&id=" . $post['ID'] . "\" type=\"button\" class=\"btn btn-primary manage\">Delete post</a>";
+							echo "<a href=\"homepage?action=delete&id=" . $post['ID'] . "\" type=\"button\" class=\"btn btn-primary manage\">Delete post</a>";
 						
 						echo "</div>";
 					}

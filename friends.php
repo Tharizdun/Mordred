@@ -36,7 +36,7 @@ if (!empty($_GET))
 
 if (!isset($_SESSION['email']))
 {
-    redirect('index.php');
+    redirect('index');
 }
 else
 {
@@ -75,14 +75,14 @@ else
 				$allFriends = $users->GetFriends($currentUserID);
 				
 				if (in_array($id, $allFriends))
-					echo "	<a class=\"btn btn-secondary\" href=\"profile.php?action=remove&id=" . $id . "\">Remove friend</a>";
+					echo "	<a class=\"btn btn-secondary\" href=\"profile?action=remove&id=" . $id . "\">Remove friend</a>";
 				else
-					echo "	<a class=\"btn btn-secondary\" href=\"profile.php?action=add&id=" . $id . "\">Add friend</a>";
+					echo "	<a class=\"btn btn-secondary\" href=\"profile?action=add&id=" . $id . "\">Add friend</a>";
 			}
 			
-			echo "	<a href=\"profile.php?id=" . $id . "\" class=\"btn btn-secondary\">Feed</a>";
-			echo "	<a href=\"friends.php?id=" . $id . "\" class=\"btn btn-secondary\">Friends</a>";
-  			echo "	<a href=\"photos.php?id=" . $id . "\" class=\"btn btn-secondary\">Photos</a>";
+			echo "	<a href=\"profile?id=" . $id . "\" class=\"btn btn-secondary\">Feed</a>";
+			echo "	<a href=\"friends?id=" . $id . "\" class=\"btn btn-secondary\">Friends</a>";
+  			echo "	<a href=\"photos?id=" . $id . "\" class=\"btn btn-secondary\">Photos</a>";
 								
 			if ($isOwner || $isAdmin)
 			{

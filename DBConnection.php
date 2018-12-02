@@ -27,7 +27,7 @@ class DBConnect
 	{
 		try
 		{
-			$result = $this->pdo->query($query);
+			return $this->pdo->query($query);
 		}
 		catch (PDOException $e)
 		{
@@ -35,7 +35,7 @@ class DBConnect
 		}
 	}
 	
-	function Select($table, $columns = "*", $condition = NULL)
+	function Select($table, $columns = "*", $condition = NULL, $addition = "")
 	{
 		try
 		{
@@ -44,7 +44,7 @@ class DBConnect
 			else
 				$wherePart = "";
 				
-			$result = $this->pdo->query("SELECT " . $columns . " FROM " . $table . $wherePart);
+			$result = $this->pdo->query("SELECT " . $columns . " FROM " . $table . $wherePart . " " . $addition);
 			
 			return $result;
 		}
@@ -54,13 +54,11 @@ class DBConnect
 		}
 	}
 	
-	function Update($table, $column, $value, $condition)
+	function Update($table, $column, $value, $condition, $addition = "")
 	{
 		try
 		{
-			$result = $this->pdo->query("UPDATE  " . $table . " SET " . $column . " = " . $value . " WHERE " . $condition);
-			
-			return $result;
+			return $this->pdo->query("UPDATE  " . $table . " SET " . $column . " = " . $value . " WHERE " . $condition . " " . $addition);
 		}
 		catch (PDOException $e)
 		{
@@ -68,13 +66,11 @@ class DBConnect
 		}
 	}
 	
-	function Delete($table, $condition)
+	function Delete($table, $condition, $addition = "")
 	{
 		try
 		{
-			$result = $this->pdo->query("DELETE FROM " . $table . " WHERE " . $condition);
-			
-			return $result;
+			return $this->pdo->query("DELETE FROM " . $table . " WHERE " . $condition . " " . $addition);
 		}
 		catch (PDOException $e)
 		{

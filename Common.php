@@ -34,7 +34,7 @@ function MakeMenu()
 
 ?>
 		<nav class="navbar sticky-top navbar-expand-lg  navbar-horizontal">
-  		<a class="navbar-brand logo" href="homepage.php">MyFIT</a>
+  		<a class="navbar-brand logo" href="homepage">MyFIT</a>
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
   		</button>
@@ -42,10 +42,10 @@ function MakeMenu()
   		<div class="collapse navbar-collapse" id="navbarSupportedContent">
     		<ul class="navbar-nav mr-auto">
       			<li class="nav-item active">
-        			<a class="nav-link" href="homepage.php">Home <span class="sr-only">(current)</span></a>
+        			<a class="nav-link" href="homepage">Home <span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item active">
-        			<a class="nav-link" href="profile.php">
+        			<a class="nav-link" href="profile">
 					<?php 
 						
 						echo $user['FirstName'] . " " .  $user['LastName'];
@@ -54,7 +54,7 @@ function MakeMenu()
 						<span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item active">
-        			<a class="nav-link" href="signout.php">Sign out<span class="sr-only">(current)</span></a>
+        			<a class="nav-link" href="signout">Sign out<span class="sr-only">(current)</span></a>
       			</li>
     		</ul>
     		<form class="form-inline my-2 my-lg-0">
@@ -72,7 +72,7 @@ function MakeMenu()
     					<span class="header">Explore</span>
   					</li>
   					<li class="nav-item">
-	    				<a class="nav-link active" href="profile.php">
+	    				<a class="nav-link active" href="profile">
 						<?php 
 						
 						echo $user['FirstName'] . " " .  $user['LastName'];
@@ -81,7 +81,7 @@ function MakeMenu()
 						</a>
   					</li>
   					<li class="nav-item">
-	    				<a class="nav-link active" href="homepage.php">News feed</a>
+	    				<a class="nav-link active" href="homepage">News feed</a>
   					</li>
 				</ul>
 				<ul class="nav flex-column menu">
@@ -94,16 +94,14 @@ function MakeMenu()
 						$allFriends = $users->GetOnlineFriends($user['ID']);
 				
 						if ($allFriends != NULL)
-						{						
-							for ($i = 0; $i < sizeof($allFriends); $i++)
+						{
+							foreach($allFriends as $friend)
 							{
-								$friend = $allFriends[$i];
-								
 								$friendInfo = $users->GetUserByID($friend);
 								$friendName = $friendInfo['FirstName'] . " " .  $friendInfo['LastName'];
 														
 								echo "<li class=\"nav-item\">";
-    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . ".php\">" . $friendName . "</a>";
+    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . "\">" . $friendName . "</a>";
   								echo "</li>";
 								
 							}
@@ -121,16 +119,14 @@ function MakeMenu()
 						$allFriends = $users->GetOnlineFriends($user['ID'], False);
 				
 						if ($allFriends != NULL)
-						{						
-							for ($i = 0; $i < sizeof($allFriends); $i++)
+						{
+							foreach($allFriends as $friend)
 							{
-								$friend = $allFriends[$i];
-								
 								$friendInfo = $users->GetUserByID($friend);
 								$friendName = $friendInfo['FirstName'] . " " .  $friendInfo['LastName'];
 														
 								echo "<li class=\"nav-item\">";
-    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . ".php\">" . $friendName . "</a>";
+    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . "\">" . $friendName . "</a>";
   								echo "</li>";
 								
 							}
@@ -169,7 +165,7 @@ function MakeConversationPane()
 								$friendName = $friendInfo['FirstName'] . " " .  $friendInfo['LastName'];
 														
 								echo "<li class=\"nav-item\">";
-    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . ".php\">" . $friendName . "</a>";
+    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . "\">" . $friendName . "</a>";
   								echo "</li>";
 								
 							}

@@ -1,21 +1,82 @@
 <?php
 
 require_once "Common.php";
-require_once "Posts.php";
+require_once "Conversations.php";
 
-/*if (!empty($_POST)) 
+$userID = "";
+$conversationID = "";
+$users = new Users();
+$currentUserID = $users->GetUserInfo($_SESSION['email'], "ID");
+$currentUserID = $currentUserID['ID'];
+$convs = new Conversations();
+
+if (!empty($_POST)) 
 {
     $message = $_POST['message'];
-    $email = $_SESSION['email'];
 	
-	$posts = new Posts();
+	if (!empty($_GET))
+	{	
+		if (isset($_GET['convID']))
+		{	
+			$conversationID = $_GET['convID'];		
+			
+			$userConvs = $convs ->GetAllUserConversations($currentUserID);
+			
+			$goHome = True;
+			
+			if (in_array($conversationID, $userConvs))
+			{
+				$goHome = False;
+			}
+			
+			if ($goHome)
+			{
+    			redirect('homepage');
+			}
+		}
+	}
 	
-	$posts->AddPost($email, $message);
-}*/
+	$convs->AddMessage($conversationID, $currentUserID, $message);
+}
+
+if (!empty($_GET))
+{
+	if (isset($_GET['id']))
+	{
+		$userID = $_GET['id'];
+		
+		$conversationID =  $convs->GetConversationForUser($userID, $currentUserID);
+		
+		if ($conversationID == -1)
+		{
+			$conversationID = $convs->CreateConversation($currentUserID);
+			$convs->AddConvUser($userID, $conversationID);
+		}		
+	}
+	
+	if (isset($_GET['convID']))
+	{
+		$conversationID = $_GET['convID'];		
+		
+		$userConvs = $convs ->GetAllUserConversations($currentUserID);
+		
+		$goHome = True;
+		
+		if (in_array($conversationID, $userConvs))
+		{
+			$goHome = False;
+		}
+		
+		if ($goHome)
+		{
+    		redirect('homepage');
+		}
+	}
+}
 
 if (!isset($_SESSION['email']))
 {
-    redirect('index.php');
+    redirect('index');
 }
 else
 {
@@ -29,41 +90,26 @@ MakeMenu();
 <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content messages">
     <div class="messageWindow">
         <?php
-				
-        $posts = new Posts();
 
-        $allPosts = $posts->GetPosts($_SESSION["email"])->fetchAll();
+        $allMessages = $convs->GetMessages($conversationID);
 
-        if ($allPosts != NULL)
-        {						
-                $users = new Users();
-
-                $allPosts = array_reverse($allPosts);
-
-                $isUserAdmin = $users->GetUserInfo($_SESSION['email'], "Admin");
-                $isUserAdmin = $isUserAdmin['Admin'];
-
-                for ($i = 0; $i < sizeof($allPosts); $i++)
+        if ($allMessages != NULL)
+        {					
+                foreach ($allMessages as $message)
                 {
-                        $post = $allPosts[$i];
-
-                        $userInfo = $users->GetUserByID($post['IDUser']);
+                        $userInfo = $users->GetUserByID($message['IDSender']);
                         $userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
 
                         $owner = $userInfo['Email'] == $_SESSION['email'];
 
                         echo "<div class=\"post\">";
                         echo "	<p class=\"title\">";
-                        echo "		<span class=\"author\"><a href=\"profile.php?id=" . $post['IDUser'] . "\">" . $userName . "</a></span>";
-                        echo "		<span class=\"time\">" . $post['Time'] . "</span>";
+                        echo "		<span class=\"author\"><a href=\"profile?id=" . $message['IDSender'] . "\">" . $userName . "</a></span>";
+                        echo "		<span class=\"time\">" . $message['Time'] . "</span>";
                         echo "	</p>";
                         echo "	<div class=\"message\">";
-                        echo $post['Message'];
+                        echo $message['Message'];
                         echo "	</div>";
-
-                        if ($owner || $isUserAdmin)
-                                echo "<a href=\"homepage.php?action=delete&id=" . $post['ID'] . "\" type=\"button\" class=\"btn btn-primary manage\">Delete post</a>";
-
                         echo "</div>";
                 }
         }
@@ -75,8 +121,8 @@ MakeMenu();
         <div class="separator">
             <hr>
         </div>
-        <form class="messages-post" method="post" action="homepage.php">
-                <textarea type="text" class="input-area" name="message" placeholder="Post message"></textarea>
+        <form class="messages-post" method="post" action="messages?convID=<?php echo $conversationID; ?>">
+                <textarea type="text" class="input-area" name="message" placeholder="Message"></textarea>
                 <input type="submit" value="Send" class="post-button">
         </form>
     </div>

@@ -7,11 +7,11 @@ if (isset($_SESSION['email']))
 {
 	session_destroy();
 	MakeOffline();
-    header("Location: index.php");
+    header("Location: index");
 }
 else
 {
-	header("Location: index.php");
+	header("Location: index");
 }
 
 ?>

@@ -20,7 +20,7 @@ if (!empty($_POST))
 if (isset($_SESSION['email']))
 {
 	MakeOnline();
-    redirect('homepage.php');
+    redirect('homepage');
 }
 else
 {
@@ -30,7 +30,7 @@ MakeHeader("Register", "login");
 ?>
 
 	<div id="login-form">
-      	<form method="post" action="register.php" id="form" accept-charset="utf-8">
+      	<form method="post" action="register" id="form" accept-charset="utf-8">
     	        <div class="form header">
     	                <p>MyFIT</p>
     	        </div>
@@ -66,7 +66,7 @@ MakeHeader("Register", "login");
 	
     	        <div class="form">
     	                <p>Already have account?</p>
-    	                <a class="form-button" href="index.php">Log in</a>
+    	                <a class="form-button" href="index">Log in</a>
     	        </div>
 				
 				<div class="form footer">

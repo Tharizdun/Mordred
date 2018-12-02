@@ -46,7 +46,7 @@ if (!empty($_GET))
 
 if (!isset($_SESSION['email']))
 {
-    redirect('index.php');
+    redirect('index');
 }
 else
 {
@@ -85,16 +85,16 @@ else
 				$allFriends = $users->GetFriends($currentUserID);
 				
 				if (in_array($id, $allFriends))
-					echo "	<a class=\"btn btn-secondary\" href=\"profile.php?action=remove&id=" . $id . "\">Remove friend</a>";
+					echo "	<a class=\"btn btn-secondary\" href=\"profile?action=remove&id=" . $id . "\">Remove friend</a>";
 				else
-					echo "	<a class=\"btn btn-secondary\" href=\"profile.php?action=add&id=" . $id . "\">Add friend</a>";
+					echo "	<a class=\"btn btn-secondary\" href=\"profile?action=add&id=" . $id . "\">Add friend</a>";
 										
-				echo "	<a href=\"messages.php?id=" . $id . "\" class=\"btn btn-secondary\">Message</a>";
+				echo "	<a href=\"messages?id=" . $id . "\" class=\"btn btn-secondary\">Message</a>";
 			}
 			
-			echo "	<a href=\"profile.php?id=" . $id . "\" class=\"btn btn-secondary\">Feed</a>";
-			echo "	<a href=\"friends.php?id=" . $id . "\" class=\"btn btn-secondary\">Friends</a>";
-  			echo "	<a href=\"photos.php?id=" . $id . "\" class=\"btn btn-secondary\">Photos</a>";
+			echo "	<a href=\"profile?id=" . $id . "\" class=\"btn btn-secondary\">Feed</a>";
+			echo "	<a href=\"friends?id=" . $id . "\" class=\"btn btn-secondary\">Friends</a>";
+  			echo "	<a href=\"photos?id=" . $id . "\" class=\"btn btn-secondary\">Photos</a>";
 								
 			if ($isOwner || $isAdmin)
 			{
@@ -111,7 +111,7 @@ else
 			
 			if ($isOwner)
 			{
-				echo "<form class=\"homepage-post\" action=\"profile.php?id=" . $id . "\" method=\"post\">";
+				echo "<form class=\"homepage-post\" action=\"profile?id=" . $id . "\" method=\"post\">";
 				echo "	<div class=\"post-part\">";
 				echo "		<textarea type=\"text\" class=\"post-item\" name=\"message\" placeholder=\"Post message\"></textarea>";
 				echo "	</div>";
@@ -155,7 +155,7 @@ else
 						echo "	</div>";
 						
 						if ($owner || $isUserAdmin)
-							echo "<a href=\"homepage.php?action=delete&id=" . $post['ID'] . "\" type=\"button\" class=\"btn btn-primary manage\">Delete post</a>";
+							echo "<a href=\"homepage?action=delete&id=" . $post['ID'] . "\" type=\"button\" class=\"btn btn-primary manage\">Delete post</a>";
 						
 						echo "</div>";
 					}
