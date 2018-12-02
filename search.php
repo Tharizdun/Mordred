@@ -32,8 +32,9 @@ else
 	
 	<div class="search">
 	
-		res
-				
+		<h4>Users</h4>		
+		<h4>Posts</h4>		
+		
 				<?php
 				
 				$allPosts = $search->GetPosts($searchQuery);

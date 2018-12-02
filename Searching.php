@@ -35,7 +35,7 @@ class Searching
 				$posterName = strtolower($poster['FirstName'] . " " . $poster['LastName']);
 				$posterNameReverse = strtolower($poster['LastName'] . " " . $poster['FirstName']);
 			
-				if (strpos(strtolower($post['Message']), $query) == True || $query == $posterName || $query == $posterNameReverse || $query == strtolower($poster['FirstName']) || $query == strtolower($poster['LastName']))
+				if ((stripos($post['Message'], $query) !== False) || $query == $posterName || $query == $posterNameReverse || $query == strtolower($poster['FirstName']) || $query == strtolower($poster['LastName']))
 				{
 					array_push($searchedPosts, $post);
 				}
