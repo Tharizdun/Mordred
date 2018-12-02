@@ -1,6 +1,6 @@
 <?php
 
-require_once "Users.php";
+require_once "Conversations.php";
 
 session_start();
 
@@ -141,6 +141,7 @@ function MakeMenu()
 function MakeConversationPane()
 {
 	$users = new Users();
+	$convs = new Conversations();
 	$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
 	
 	?>
@@ -153,20 +154,28 @@ function MakeConversationPane()
 					
 					<?php 
 						
-						$allFriends = $users->GetFriends($user['ID']);
+						$allConversations = $convs->GetAllUserConversations($user['ID']);
 				
-						if ($allFriends != NULL)
+						if ($allConversations != NULL)
 						{						
-							for ($i = 0; $i < sizeof($allFriends); $i++)
+							foreach($allConversations as $conversation)
 							{
-								$friend = $allFriends[$i];
+								$convUsers = $convs->GetUsersForConversations($conversation);
 								
-								$friendInfo = $users->GetUserByID($friend);
-								$friendName = $friendInfo['FirstName'] . " " .  $friendInfo['LastName'];
-														
+								$convTitle = "";
+								
+								foreach($convUsers as $userID)
+								{
+									if ($userID != $user['ID'])
+									{
+										$friendInfo = $users->GetUserByID($userID);
+										$convTitle .= $friendInfo['FirstName'] . " " .  $friendInfo['LastName'] . ", ";
+									}
+								}
+										
 								echo "<li class=\"nav-item\">";
-    							echo "<a class=\"nav-link active\" href=\"messages?id=" . $friend . "\">" . $friendName . "</a>";
-  								echo "</li>";
+    							echo "<a class=\"nav-link active\" href=\"messages?convID=" . $conversation . "\">" . substr($convTitle, 0, strlen($convTitle) - 2) . "</a>";
+  								echo "</li>";	
 								
 							}
 						}
