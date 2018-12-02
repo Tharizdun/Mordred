@@ -133,7 +133,25 @@ MakeMenu();
 
 <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content messages">
     <div class="messageWindow">
+	
         <?php
+		
+		$convUsers = $convs->GetUsersForConversations($conversationID);
+		
+		$header = "";
+		
+		foreach($convUsers as $user)
+		{
+			if ($user['IDUser'] == $currentUserID)
+				continue;
+			
+        	$userInfo = $users->GetUserByID($user['IDUser']);
+        	$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
+			
+			$header .= "<a href=\"profile?id=" . $userInfo['ID'] . "\">" . $userName . "</a>, ";
+		}
+		
+		echo "<h2>Chat: " . substr($header, 0, strlen($header) - 2) . "</h2>";
 
         $allMessages = $convs->GetMessages($conversationID);
 
