@@ -158,7 +158,7 @@ class Users
 	
 	function GetAllusers()
 	{
-		return $this->dbc->Select("Users")>FetchAll();
+		return $this->dbc->Select("Users")->FetchAll();
 	}
 }
 

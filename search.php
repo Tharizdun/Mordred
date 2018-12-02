@@ -32,8 +32,30 @@ else
 	
 	<div class="search">
 	
-		<h4>Users</h4>		
-		<h4>Posts</h4>		
+		<h4>Users</h4>
+		
+				<?php
+				
+				$allUsers = $search->GetUsers($searchQuery);
+				
+				if ($allUsers != NULL)
+				{
+						
+					foreach($allUsers as $user)
+					{
+						$userName = $user['FirstName'] . " " .  $user['LastName'];
+						
+						echo "<div class=\"post\">";
+						echo "	<p class=\"title\">";
+						echo "		<span class=\"author\"><a href=\"profile?id=" . $user['ID'] . "\">" . $userName . "</a></span>";
+						echo "	</p>";				
+						echo "</div>";
+					}
+				}
+				
+				?>
+				
+		<h4>Posts</h4>	
 		
 				<?php
 				
