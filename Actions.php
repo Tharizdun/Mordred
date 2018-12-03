@@ -2,19 +2,99 @@
 
 require_once "Posts.php";
 
-class Posts
+class Actions
 {
 	private $dbc;
 	private $users;
 	private $convs;
+	private $posts;
 
 	function __construct()
 	{
 		$this->dbc = new DBConnect();
 		$this->users = new Users();
 		$this->convs = new Conversations();
+		$this->posts = new Posts();
 	}
-
+	
+	function AddEvent($creatorID, $title, $description, $time, $date, $place)
+	{
+		$query = "INSERT INTO `xzedni12`.`Events` (`ID`, `Title`, `Description`, `Time`, `Date`, `Place`, `Deleted`) VALUES (NULL, '" . $title . "', '" . $description . "', '" . $time . "', '" . $date . "', '" . $place . "', '0');";
+		$this->dbc->DoQuery($query);
+		
+		$eventID = $this->dbc->Select("Events", "ID", NULL, "ORDER BY `ID` DESC")->Fetch();
+		
+		if ($eventID != NULL)
+			$eventID = $eventID[0];
+			
+		$this->AddCreator($eventID, $creatorID);
+	}
+	
+	function GetEvent($eventID)
+	{
+		return $this->dbc->Select("Events", "*", "ID='" . $eventID . "'");
+	}
+	
+	function AddEventUser($eventID, $userID, $type = "attended")
+	{
+		$table = "";
+		
+		switch(strtolower($type))
+		{
+			case "attended":
+				$table = "EventAttended";
+				break;
+				
+			case "creators":
+				$table = "EventCreators";
+				break;
+				
+			default:
+				return;
+				break;
+		}
+		
+		$query = "INSERT INTO `xzedni12`.`" . $table . "` (`ID`, `IDEvent`, `IDUser`) VALUES (NULL, '" . $eventID . "', '" . $userID . "');";
+		$this->dbc->DoQuery($query);
+	}
+	
+	function GetEventPeople($eventID, $type = "attended")
+	{
+		$table = "";
+		
+		switch(strtolower($type))
+		{
+			case "attended":
+				$table = "EventAttended";
+				break;
+				
+			case "creators":
+				$table = "EventCreators";
+				break;
+				
+			default:
+				return;
+				break;
+		}
+		
+		$usersList = array();
+		
+		$allUsers = $this->dbc->Select($table, "IDUser", "IDEvent='" . $eventID . "'");
+		
+		foreach($allUsers as $user)
+		{
+			array_push($usersList, $user[0]);
+		}
+		
+		return $usersList;
+	}
+	
+	-----------
+	
+	
+	
+	
+	
 	function AddPost($email, $message)
 	{
 		$userID = $this->users->GetUserInfo($email, "ID");
