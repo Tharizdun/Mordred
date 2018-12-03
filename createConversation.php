@@ -58,7 +58,12 @@ else
 				}
 				
 				if ($selectedUsers != "")
-					echo "<a href=\"messages?action=create&userIDs=" . $selectedUsers . "\" type=\"button\" class=\"btn btn-primary manage\">Finish</a>";
+				{                                    
+					echo "<form class=\"messages-post\" method=\"post\" action=\"messages?action=create&userIDs=" . $selectedUsers . "\" accept-charset=\"UTF-8\">";
+					echo "<input type=\"text\" class=\"input-area\" name=\"topic\" placeholder=\"Conversation name\">";
+					echo "<input type=\"submit\" value=\"Finish\" class=\"post-button\">";
+					echo "</form>";
+				}
 				
 				?>	
 	</div>

@@ -114,9 +114,9 @@ class Conversations
 		return $messages;
 	}
 	
-	function CreateConversation($id)
+	function CreateConversation($id, $topic = "")
 	{
-		$query = "INSERT INTO `xzedni12`.`Conversations` (`ID`, `Topic`) VALUES (NULL, '');";
+		$query = "INSERT INTO `xzedni12`.`Conversations` (`ID`, `Topic`) VALUES (NULL, '" . $topic . "');";
 		$this->dbc->DoQuery($query);
 		
 		$convID = $this->dbc->Select("Conversations", "ID", NULL, "ORDER BY `ID` DESC")->Fetch();
@@ -144,6 +144,12 @@ class Conversations
 	{		
 		$query = "INSERT INTO `xzedni12`.`Messages` (`ID`, `IDSender`, `IDConversation`, `Time`, `Message`) VALUES (NULL, '" . $id . "', '" . $convID . "', CURRENT_TIMESTAMP, '" . $message . "');";
 		$this->dbc->DoQuery($query);
+	}
+	
+	function GetConversationTopic($convID)
+	{
+		$topic =  $this->dbc->Select("Conversations", "Topic", "ID = '" . $convID . "'")->Fetch();
+		return $topic['Topic'];
 	}
 	
 	function GetTag($message, $getMessage = true)
