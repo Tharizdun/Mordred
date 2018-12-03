@@ -124,6 +124,11 @@ if ($showSuccess)
 		
 		foreach ($events as $event)
 		{
+			if (strtotime($event['Date']) < strtotime("today"))
+				continue;
+				
+			if (strtotime($event['Time']) < time())
+				continue;
 			
 			$userAttended = $acts->GetEventPeople($event['ID']);
 			
@@ -135,7 +140,7 @@ if ($showSuccess)
             </div>
             
             <div class="date">
-                <span class="floatRight"><?php echo $event['Date']; ?></span>
+                <span><?php echo $event['Date']; ?></span>
             </div>
             
             <div class="time">
