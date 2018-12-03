@@ -145,6 +145,10 @@ MakeMenu();
 				continue;
 			
         	$userInfo = $users->GetUserByID($user['IDUser']);
+			
+			if ($userInfo['Deleted'])
+				continue;
+			
         	$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
 			
 			$header .= "<a href=\"profile?id=" . $userInfo['ID'] . "\">" . $userName . "</a>, ";

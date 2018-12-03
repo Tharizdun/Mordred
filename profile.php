@@ -68,6 +68,9 @@ else
 		
 		if ($user['Email'] == $_SESSION['email'])
 			$isOwner = true;
+		
+		if ($user['Deleted'])
+			redirect("homepage");
 	}
 
 	MakeHeader($user['FirstName'] . " " .  $user['LastName'], "homepage");
