@@ -58,7 +58,7 @@ class DBConnect
 	{
 		try
 		{
-			return $this->pdo->query("UPDATE  " . $table . " SET " . $column . " = " . $value . " WHERE " . $condition . " " . $addition);
+			return $this->pdo->query("UPDATE " . $table . " SET " . $column . "='" . $value . "' WHERE " . $condition . " " . $addition);
 		}
 		catch (PDOException $e)
 		{

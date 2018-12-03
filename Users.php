@@ -50,7 +50,7 @@ class Users
 	
 	function RegisterUser($firstName, $lastName, $email, $pass)
 	{
-		$query = "INSERT INTO `xzedni12`.`Users` (`ID`, `School`, `Residence`, `Occupation`, `Phone`, `RelationshipStatus`, `Relationship`, `Deleted`, `Email`, `Password`, `Admin`, `FirstName`, `LastName`) VALUES (NULL, '', '', '', '', '', '', '0', '" . $email . "', '" . $pass . "', '0', '" . $firstName . "', '" . $lastName . "');";
+		$query = "INSERT INTO `xzedni12`.`Users` (`ID`, `School`, `Residence`, `Occupation`, `Phone`, `RelationshipStatus`, `Relationship`, `Deleted`, `Email`, `Password`, `Admin`, `FirstName`, `LastName`, `Birthday`) VALUES (NULL, '', '', '', '', '', '', '0', '" . $email . "', '" . $pass . "', '0', '" . $firstName . "', '" . $lastName . "', NULL);";
 			
 		$this->dbc->DoQuery($query);
 	}
@@ -164,6 +164,11 @@ class Users
 	function GetAllusers()
 	{
 		return $this->dbc->Select("Users")->FetchAll();
+	}
+	
+	function UpdateInfo($id, $column, $value)
+	{
+		$this->dbc->Update("Users", $column, $value, "ID='" . $id . "'");
 	}
 }
 

@@ -87,6 +87,9 @@ function MakeMenu()
   					<li class="nav-item">
 	    				<a class="nav-link" href="events">Events</a>
   					</li>
+  					<li class="nav-item">
+	    				<a class="nav-link" href="settings">Settings</a>
+  					</li>
 				</ul>
 				<ul class="nav flex-column menu">
 	  				<li class="nav-item">
