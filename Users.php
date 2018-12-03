@@ -163,7 +163,7 @@ class Users
 	
 	function GetAllusers()
 	{
-		return $this->dbc->Select("Users")->FetchAll();
+		return $this->dbc->Select("Users", "*", "Deleted<>1")->FetchAll();
 	}
 	
 	function UpdateInfo($id, $column, $value)
