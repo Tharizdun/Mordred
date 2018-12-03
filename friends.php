@@ -86,7 +86,7 @@ else
 								
 			if ($isOwner || $isAdmin)
 			{
-  				echo "	<button type=\"button\" class=\"btn btn-secondary\">Settings</button>";
+  				echo "	<a href=\"settings?id=" . $id . "\" class=\"btn btn-secondary\">Settings</a>";
 			}
 			
 			echo "</div>";
