@@ -7,7 +7,7 @@ if (isset($_SESSION['email']))
 {
 	session_destroy();
 	MakeOffline();
-    header("Location: index");
+    header("Location: index?signout=true");
 }
 else
 {
