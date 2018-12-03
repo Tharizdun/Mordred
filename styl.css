@@ -792,6 +792,12 @@ textArea:focus
     float:left;
 }
 
+.eventsWindow .eventFrame .delete
+{
+    height:20%;
+    float:right;
+}
+
 .eventsWindow .eventFrame .description
 {
     width:80%;

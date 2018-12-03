@@ -33,6 +33,18 @@ if (!empty($_POST) && !empty($_GET))
 			break;
 	}
 }
+else
+{
+	if ( !empty($_GET))
+	{
+		switch ($_GET['action'])
+		{				
+			case "remove":
+				$acts->RemoveEvent($_GET['id']);
+				break;
+		}
+	}
+}
 
 if (!isset($_SESSION['email']))
 {
@@ -145,7 +157,10 @@ if ($showSuccess)
             
             <div class="time">
                 <span><?php echo $event['Time']; ?></span>
-            </div>
+           	 	<div class="delete">
+           		     <a href="events?action=remove&id=<?php echo $event['ID']; ?>">Delete event</a>
+           	 	</div>
+            </div>            
             
             <div class="PlaceTitle">
                 <span>Place</span>

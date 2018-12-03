@@ -40,7 +40,7 @@ class Actions
 		$events = array();
 		$participiant = array();
 	
-		$allEvents = $this->dbc->Select("Events")->FetchAll();
+		$allEvents = $this->dbc->Select("Events", "*", "Deleted <> 1")->FetchAll();
 		$allAttended = $this->dbc->Select("EventsAttended", "IDEvent", "IDUser='" . $userID . "'")->FetchAll();
 		$allCreated = $this->dbc->Select("EventsCreators", "IDEvent", "IDUser='" . $userID . "'")->FetchAll();
 		
@@ -85,6 +85,11 @@ class Actions
 		
 		$query = "INSERT INTO `xzedni12`.`" . $table . "` (`ID`, `IDEvent`, `IDUser`) VALUES (NULL, '" . $eventID . "', '" . $userID . "');";
 		$this->dbc->DoQuery($query);
+	}
+	
+	function RemoveEvent($id)
+	{
+		$this->dbc->Update("Events", "Deleted", "1", "ID = " . $id);
 	}
 	
 	function GetEventPeople($eventID, $type = "attended")
