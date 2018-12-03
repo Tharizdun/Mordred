@@ -11,6 +11,7 @@ $userInfo = "";
 $showAlert = false;
 $showSuccess = false;
 $message  = "";
+$messageAlert  = "";
 
 if (!empty($_POST) && !empty($_GET))
 {
@@ -46,19 +47,19 @@ if (!empty($_POST) && !empty($_GET))
 						else
 						{
 							$showAlert = true;
-							$message = "Your old password is not correct";
+							$messageAlert = "Your old password is not correct";
 						}
 					}
 					else
 					{
 						$showAlert = true;
-						$message = "Your password is too short";
+						$messageAlert = "Your password is too short";
 					}
 				}
 				else
 				{
-						$showAlert = true;
-						$message = "Your passwords are not same";
+					$showAlert = true;
+					$messageAlert = "Your passwords are not same";
 				}			
 				
 				break;
@@ -69,11 +70,19 @@ if (!empty($_POST) && !empty($_GET))
 				$users->UpdateInfo($userID, "Phone", $_POST['phone']);
 				$users->UpdateInfo($userID, "Occupation", $_POST['occupation']);
 				$users->UpdateInfo($userID, "School", $_POST['school']);
-				$users->UpdateInfo($userID, "Relationship", $_POST['relationship']);
 				$users->UpdateInfo($userID, "Birthday", $_POST['bday']);
 				$users->UpdateInfo($userID, "RelationshipStatus", $_POST['RelationshipStatus']);
 				$users->UpdateInfo($userID, "Email", $_POST['email']);
 				$users->UpdateInfo($userID, "Residence", $_POST['residence']);
+				
+				$userRelation = $users->GetUserInfo($_POST['relationship'], "ID");
+				if ($userRelation == NULL)
+				{
+					$showAlert = true;
+					$messageAlert = "Partner error: User with this email is not in system";
+				}
+				else
+					$users->UpdateInfo($userID, "Relationship", $userRelation['ID']);
 				
 				$userInfo = $users->GetUserByID($userID);
 				
@@ -122,7 +131,7 @@ MakeMenu();
 if ($showAlert)
 {
 	echo "<div class=\"alert alert-danger alert-message\" role=\"alert\">";
-  	echo $message;
+  	echo $messageAlert;
 	echo "</div>";
 }
 
@@ -190,7 +199,13 @@ if ($showSuccess)
 
             <div class="form">
                     <p>Partner</p>
-                    <input type="text" class="form-item" name="relationship" value="<?php echo $userInfo['Relationship']; ?>">
+                    <input type="text" class="form-item" name="relationship" value="<?php 
+										
+					$userRelation = $users->GetUserByID($userInfo['Relationship']);
+					
+					echo $userRelation['Email']; 
+					
+					?>">
             </div>
 
             <div class="form">
