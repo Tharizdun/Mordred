@@ -63,8 +63,8 @@ else
 	MakeMenu();
 
 ?>
-	<div class="user">
-		<h1 class="name"><?php echo $user['FirstName'] . " " .  $user['LastName']; ?></h1>
+	<div class="profile">
+		<h1 class="name separator2"><?php echo $user['FirstName'] . " " .  $user['LastName']; ?></h1>
 		
 		<?php 		
 			
@@ -90,7 +90,7 @@ else
 			}
 			
 			echo "</div>";
-			echo "<hr>";
+			echo "<hr class='separator2'>";
 			
 			
 			
