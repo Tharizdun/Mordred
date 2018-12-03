@@ -55,8 +55,22 @@ if (!empty($_POST) && !empty($_GET))
 }
 else
 {
+	if (!empty($_GET))
+		if (isset($_GET['id']))
+		{
+			$userInfo = $users->GetUserByID($_GET['id']);
+			$userID = $userInfo['ID'];
+		}
+		else
+		{
+			$userInfo = $users->GetUserInfo($_SESSION['email']);
+			$userID = $userInfo['ID'];
+		}
+	else
+	{
 		$userInfo = $users->GetUserInfo($_SESSION['email']);
-		$userID = $userInfo['ID'];
+		$userID = $userInfo['ID'];	
+	}
 }
 
 if (!isset($_SESSION['email']))

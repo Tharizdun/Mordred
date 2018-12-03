@@ -9,12 +9,24 @@ if (!empty($_POST))
     $lastName = $_POST['lastName'];
     $email = $_POST['email'];
     $pass = $_POST['password'];
+    $passAgain = $_POST['passwordAgain'];
 	
 	$users = new Users();
 	
-	$users->RegisterUser($firstName, $lastName, $email, $pass);
+	if ($pass == $passAgain && strlen($pass) > 5)
+	{
+		$userInfo = $users->GetUserInfo($email);
 	
-	$_SESSION['email'] = $email;
+		if ($userInfo == NULL)
+		{
+			$users->RegisterUser($firstName, $lastName, $email, $pass);
+			$_SESSION['email'] = $email;
+		}
+		else
+    		redirect('register');
+	}
+	else
+    	redirect('register');	
 }
 
 if (isset($_SESSION['email']))
