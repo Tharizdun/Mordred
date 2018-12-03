@@ -77,6 +77,7 @@ if (!empty($_GET))
 							$convs->AddConvUser($convUser, $conversationID);
 					}
 					
+					$convs->UpdateConversation($conversationID, $convName);
 					redirect('messages?convID=' . $conversationID);
 					
 					break;

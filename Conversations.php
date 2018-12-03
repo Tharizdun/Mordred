@@ -129,6 +129,12 @@ class Conversations
 		return $convID;
 	}
 	
+	function UpdateConversation($id, $topic = "")
+	{
+	echo $topic;
+		$this->dbc->Update("Conversations", "Topic", $topic, "ID='" . $id . "'");
+	}
+	
 	function AddConvUser($id, $convID)
 	{
 		$userInConvExist = $this->dbc->Select("ConversationsUsers", "ID", "IDUser = '" . $id . "' AND IDConversation='" . $convID . "'")->FetchAll();
@@ -149,7 +155,7 @@ class Conversations
 	function GetConversationTopic($convID)
 	{
 		$topic =  $this->dbc->Select("Conversations", "Topic", "ID = '" . $convID . "'")->Fetch();
-		return $topic['Topic'];
+		return $topic[0];
 	}
 	
 	function GetTag($message, $getMessage = true)
