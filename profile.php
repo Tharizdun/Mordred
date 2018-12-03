@@ -95,6 +95,7 @@ else
 			}
 			
 			echo "	<a href=\"profile?id=" . $id . "\" class=\"btn btn-secondary\">Feed</a>";
+			echo "	<a href=\"about?id=" . $id . "\" class=\"btn btn-secondary\">About</a>";
 			echo "	<a href=\"friends?id=" . $id . "\" class=\"btn btn-secondary\">Friends</a>";
 								
 			if ($isOwner || $isAdmin)

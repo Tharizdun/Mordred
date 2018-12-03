@@ -13,25 +13,6 @@ $currentUserID = $isAdmin['ID'];
 if (!empty($_GET))
 {
 	$id = $_GET['id'];
-	
-	if (isset($_GET['action']))
-	{
-		$action = $_GET['action'];
-		
-		if ($action != NULL && $action != "")
-		{	
-			switch($action)
-			{	
-				case 'remove':
-					$users->SwitchFriend($id, $currentUserID, false);
-					break;
-					
-				case 'add':			
-					$users->SwitchFriend($id, $currentUserID);
-					break;
-			}	
-		}	
-	}
 }
 
 if (!isset($_SESSION['email']))
@@ -47,7 +28,7 @@ else
 
 	if ($id == "-1")
 	{
-		$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
+		$user = $users->GetUserInfo($_SESSION['email']);
 		$isOwner = $isOwner || True;
 		$id = $user['ID'];
 	}
@@ -94,28 +75,23 @@ else
 			
 			echo "</div>";
 			echo "<hr class='separator2'>";
-			echo "<div class='messageWindowBig'>";
-                        
-				$allUsers = $users->GetFriends($id);
-				
-				if ($allUsers != NULL)
-				{						
-					foreach($allUsers as $user)
-					{
-						$userInfo = $users->GetUserByID($user);
-						$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
-						
-                                                echo "<div class=\"friendFrame\">";
-						
-						echo "<a href=\"profile?id=" . $userInfo['ID'] . "\">" . $userName . "</a>";
-										
-                                                echo "</div>";
-                             
-					}
-				}
-                        echo "</div>";
-				
+			echo "<h3 class='separator2'>About</h3>";
 				?>
+			
+			<b>Name: </b> <?php echo $user['FirstName'] . " " .  $user['LastName']; ?><br>
+			<b>Email: </b> <?php echo $user['Email']; ?><br>
+			<b>Phone: </b> <?php echo $user['Phone']; ?><br>
+			<b>Relationship status: </b> <?php echo $user['RelationshipStatus']; ?><br>
+			<b>Residence: </b> <?php echo $user['Residence']; ?><br>
+			<b>School: </b> <?php echo $user['School']; ?><br>
+			<b>Work: </b> <?php echo $user['Occupation']; ?><br>
+			<b>Partner: </b> <?php
+			
+			$userRelation = $users->GetUserByID($user['Relationship']);
+			
+			 echo $userRelation['FirstName'] . " " .  $userRelation['LastName'] . " (" . $userRelation['Email'] . ")"; ?><br>
+			<b>Birthday: </b> <?php echo $user['Birthday']; ?>
+				
 	</div>
 <?php
 
