@@ -141,10 +141,10 @@ MakeMenu();
 		
 		foreach($convUsers as $user)
 		{
-			if ($user['IDUser'] == $currentUserID)
+			if ($user == $currentUserID)
 				continue;
 			
-        	$userInfo = $users->GetUserByID($user['IDUser']);
+        	$userInfo = $users->GetUserByID($user);
 			
 			if ($userInfo['Deleted'])
 				continue;
