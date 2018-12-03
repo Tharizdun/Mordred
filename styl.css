@@ -429,6 +429,13 @@ textArea:focus
         margin-left: auto;
 		width:90%;
 		padding-top:10px;
+                height: 48.4px;
+                overflow:scroll;
+                -ms-overflow-style: none;
+}
+.messages .messageHeader::-webkit-scrollbar
+{
+    display:none;
 }
 
 .messages .messageWindow
