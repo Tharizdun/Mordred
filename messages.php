@@ -21,9 +21,14 @@ $task->run(function(){
 	echo "Task Ran";
 });*/
 
+$convName = "";
+
 if (!empty($_POST)) 
 {
     $message = $_POST['message'];
+	
+	if (isset($_POST['topic']))
+		$convName = $_POST['topic'];
 	
 	if (!empty($_GET))
 	{	
@@ -66,12 +71,13 @@ if (!empty($_GET))
 			
 					if ($conversationID == -1)
 					{
-						$conversationID = $convs->CreateConversation($currentUserID);
+						$conversationID = $convs->CreateConversation($currentUserID, $convName);
 						
 						foreach($userIDs as $convUser)
 							$convs->AddConvUser($convUser, $conversationID);
 					}
 					
+					$convs->UpdateConversation($conversationID, $convName);
 					redirect('messages?convID=' . $conversationID);
 					
 					break;
@@ -135,26 +141,36 @@ MakeMenu();
 	<div class="messageHeader">
         <?php
 		
-		$convUsers = $convs->GetUsersForConversations($conversationID);
-		
 		$header = "";
 		
-		foreach($convUsers as $user)
+		$topic = $convs->GetConversationTopic($conversationID);	
+		$convUsers = $convs->GetUsersForConversations($conversationID);
+		
+		if ($topic == "")
 		{
-			if ($user == $currentUserID)
-				continue;
+			foreach($convUsers as $user)
+			{
+				if ($user == $currentUserID)
+					continue;
+				
+	        	$userInfo = $users->GetUserByID($user);
+				
+				if ($userInfo['Deleted'])
+					continue;
+				
+	        	$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
+				
+				$header .= "<a href=\"profile?id=" . $userInfo['ID'] . "\">" . $userName . "</a>, ";
+			}
 			
-        	$userInfo = $users->GetUserByID($user);
-			
-			if ($userInfo['Deleted'])
-				continue;
-			
-        	$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
-			
-			$header .= "<a href=\"profile?id=" . $userInfo['ID'] . "\">" . $userName . "</a>, ";
+			echo "<h2>Chat: " . substr($header, 0, strlen($header) - 2) . "</h2>";
+		}
+		else
+		{
+			$header = $topic;
+			echo "<h2>Chat: " . $header . "</h2>";
 		}
 		
-		echo "<h2>Chat: " . substr($header, 0, strlen($header) - 2) . "</h2>";
 		?>
     </div>
     <div  class="messageWindow">

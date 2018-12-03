@@ -182,9 +182,16 @@ function MakeConversationPane()
 										$convTitle .= $friendInfo['FirstName'] . " " .  $friendInfo['LastName'] . ", ";
 									}
 								}
-										
+																
+								$topic = $convs->GetConversationTopic($conversation);	
+								
+								if ($topic == "")
+									$convTitle = substr($convTitle, 0, strlen($convTitle) - 2);
+								else
+									$convTitle = $topic;
+																		
 								echo "<li class=\"nav-item\">";
-    							echo "<a class=\"nav-link active\" href=\"messages?convID=" . $conversation . "\">" . substr($convTitle, 0, strlen($convTitle) - 2) . "</a>";
+    							echo "<a class=\"nav-link active\" href=\"messages?convID=" . $conversation . "\">" . $convTitle . "</a>";
   								echo "</li>";	
 								
 							}
