@@ -135,7 +135,7 @@ if ($showSuccess)
             </div>
             
             <div class="date">
-                <span><?php echo $event['Date']; ?></span>
+                <span class="floatRight"><?php echo $event['Date']; ?></span>
             </div>
             
             <div class="time">
