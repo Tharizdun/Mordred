@@ -105,7 +105,7 @@ else
 						
                                                 echo "<div class=\"friendFrame\">";
 						
-						echo "<a href=\"profile?id=" . $user['ID'] . "\">" . $userName . "</a>";
+						echo "<a href=\"profile?id=" . $userInfo['ID'] . "\">" . $userName . "</a>";
 										
                                                 echo "</div>";
                              
