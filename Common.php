@@ -7,6 +7,8 @@ session_start();
 function MakeHeader($title, $bodyClass)
 {
 header('Content-type: text/html; charset=utf-8');
+$sec = "1800";
+header("Refresh: $sec; url=signout");
 ?>
 <!DOCTYPE html> 
     <html lang="cs">
