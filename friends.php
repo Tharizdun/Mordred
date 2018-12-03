@@ -91,7 +91,7 @@ else
 			
 			echo "</div>";
 			echo "<hr class='separator2'>";
-			echo "<div class='messageWindow'>";
+			echo "<div class='messageWindowBig'>";
                         
 				$allUsers = $users->GetFriends($id);
 				
@@ -102,11 +102,12 @@ else
 						$userInfo = $users->GetUserByID($user);
 						$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
 						
-						echo "<div class=\"post\">";
-						echo "	<p class=\"title\">";
-						echo "		<span class=\"author\"><a href=\"profile?id=" . $user['ID'] . "\">" . $userName . "</a></span>";
-						echo "	</p>";				
-						echo "</div>";
+                                                echo "<div class=\"friendFrame\">";
+						
+						echo "<a href=\"profile?id=" . $user['ID'] . "\">" . $userName . "</a>";
+										
+                                                echo "</div>";
+                             
 					}
 				}
                         echo "</div>";

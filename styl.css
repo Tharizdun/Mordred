@@ -90,6 +90,13 @@ a.nav-link
 	height:calc(100vh - 62px);
         width: 20%;
         float: left;
+        overflow:scroll;
+        -ms-overflow-style: none;
+}
+
+.sidebar::-webkit-scrollbar
+{
+    display:none;
 }
 
 .sidebar .nav-link
@@ -637,4 +644,55 @@ textArea:focus
     border-radius:10px;
     margin-top:10px;
     color:rgb(200, 200, 200);
+}
+
+.profile .friendFrame
+{
+    min-width:300px;
+    width:45%;
+    height:50px;
+    border: solid 1px grey;
+    background-color: rgb(35,35,35);
+    float:left;
+    margin-right:5%;
+    margin-bottom:20px;
+    border-radius: 10px;
+}
+.profile .friendFrame .title
+{
+    font-weight: bold;
+    height:40px;
+}
+.profile .friendFrame a
+{
+    height:100%;
+    width: 100%;
+    font-weight: bold;
+    vertical-align: middle;
+    text-align: left;
+    display:block;
+    padding-left:15px;
+    padding-top:10px;
+    color: white;
+    text-decoration: none;
+}
+
+.profile .friendFrame a:hover
+{
+    color: rgb(150,150,150);
+}
+
+.profile .messageWindowBig
+{
+        padding-top:10px;
+        margin-right:auto;
+        margin-left: auto;
+        width: 90%;
+	height:calc(100vh - 189px);
+        overflow:scroll;
+        -ms-overflow-style: none;
+}
+.profile .messageWindowBig::-webkit-scrollbar
+{
+    display:none;
 }
