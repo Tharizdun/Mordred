@@ -14,12 +14,17 @@ $currentUserID = $isAdmin['ID'];
 
 if (!empty($_POST)) 
 {
-    $message = $_POST['message'];
-    $email = $_SESSION['email'];
-	
-	$posts = new Posts();
-	
-	$posts->AddPost($email, $message);
+	if (isset($_POST['message']))
+	{
+    	$message = $_POST['message'];
+    	$email = $_SESSION['email'];
+		
+		$posts = new Posts();
+		
+		$posts->AddPost($email, $message);
+		
+		unset($_POST['message']);
+	}
 }
 
 if (!empty($_GET))

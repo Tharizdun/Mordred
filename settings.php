@@ -92,14 +92,17 @@ if (!empty($_POST) && !empty($_GET))
 				}
 				else
 				{
-					$userRelation = $users->GetUserInfo($_POST['relationship'], "ID");
+					$userRelation = $users->GetUserInfo($_POST['relationship']);
 					if ($userRelation == NULL)
 					{
 						$showAlert = true;
 						$messageAlert = "Partner error: User with this email is not in system";
 					}
 					else
+					{
 						$users->UpdateInfo($userID, "Relationship", $userRelation['ID']);
+						$users->UpdateInfo($userRelation['ID'], "Relationship", $userID);
+					}
 				}
 				
 				$userInfo = $users->GetUserByID($userID);

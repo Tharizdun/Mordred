@@ -89,7 +89,12 @@ else
 			
 			$userRelation = $users->GetUserByID($user['Relationship']);
 			
-			 echo $userRelation['FirstName'] . " " .  $userRelation['LastName'] . " (" . $userRelation['Email'] . ")"; ?><br>
+			if ($user['Relationship'] != NULL && $user['Relationship'] != "" && $user['Relationship'] != "0")
+				echo $userRelation['FirstName'] . " " .  $userRelation['LastName'] . " (" . $userRelation['Email'] . ")";
+			else
+			 	echo "";
+			
+			 ?><br>
 			<b>Birthday: </b> <?php echo $user['Birthday']; ?>
                         </div>
 				
