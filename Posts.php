@@ -43,9 +43,12 @@ class Posts
 	
 	function GetPosts($email, $includeFriends = true)
 	{
-		$userID = $this->users->GetUserInfo($email, "ID");
-		
+		$userID = $this->users->GetUserInfo($email, "ID");		
+		$tagPosts = $this->GetTagPosts($userID);		
 		$friendPosts = "";
+		$posts = array();
+		$validUsers = array();
+		array_push($validUsers, $userID['ID']);
 		
 		if ($includeFriends)
 		{
@@ -53,11 +56,21 @@ class Posts
 			
 			foreach ($friendList as $friend)
 			{
-				$friendPosts .= "OR IDUser = '" . $friend . "'";
+				//$friendPosts .= "OR IDUser = '" . $friend . "'";
+				array_push($validUsers, $friend);
 			}
 		}
 		
-		return $this->dbc->Select("Posts", "*", "Deleted <> 1 AND (IDUser = '" . $userID['ID'] . "'" . $friendPosts . ")")->FetchAll();
+		$allPosts = $this->GetAllPosts();
+		
+		foreach($allPosts as $post)
+		{
+			if (in_array($post['IDUser'], $validUsers) || in_array($post['ID'], $tagPosts))
+				array_push($posts, $post);
+		}
+		
+		//return $this->dbc->Select("Posts", "*", "Deleted <> 1 AND (IDUser = '" . $userID['ID'] . "'" . $friendPosts . ")")->FetchAll();
+		return $posts;
 	}
 	
 	function GetAllPosts()
@@ -78,12 +91,26 @@ class Posts
 	}
 	
 	function GetLatestPostID()
-	{		
+	{
 		$lastPostID = $this->dbc->Select("Posts", "ID", NULL, "ORDER BY `ID` DESC")->Fetch();
 		
 		if ($lastPostID != NULL)
 			$lastPostID = $lastPostID[0];
 		
 		return $lastPostID;
+	}
+	
+	function GetTagPosts($userID)
+	{
+		$tagPosts = array();
+	
+		$tagList = $this->dbc->Select("PostsTag", "IDTag", "IDUser='" . $userID . "'")->FetchAll();
+		
+		foreach($tagList as $tagPost)
+		{
+			array_push($tagPosts, $tagPost[0]);
+		}
+		
+		return $tagPosts;
 	}
 }

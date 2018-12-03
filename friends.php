@@ -91,10 +91,25 @@ else
 			
 			echo "</div>";
 			echo "<hr class='separator2'>";
-			
-			
-			
-			?>
+				
+				$allUsers = $users->GetFriends($id);
+				
+				if ($allUsers != NULL)
+				{						
+					foreach($allUsers as $user)
+					{
+						$userInfo = $users->GetUserByID($user);
+						$userName = $userInfo['FirstName'] . " " .  $userInfo['LastName'];
+						
+						echo "<div class=\"post\">";
+						echo "	<p class=\"title\">";
+						echo "		<span class=\"author\"><a href=\"profile?id=" . $user['ID'] . "\">" . $userName . "</a></span>";
+						echo "	</p>";				
+						echo "</div>";
+					}
+				}
+				
+				?>
 	</div>
 <?php
 
