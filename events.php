@@ -249,7 +249,53 @@ if ($showSuccess)
 
 
     <div class="eventsWindow borderTop">
+        
+        <div class="eventFrame">
+            <div class="title">
+                <span>Title</span>
+            </div>
+            
+            <div class="date">
+                <span>Date</span>
+            </div>
+            
+            <div class="time">
+                <span>Time</span>
+            </div>
+            
+            <div class="DescriptionTitle">
+                <span>Description</span>
+            </div>
+            
+            <div class="description">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            </div>
+            
+            <div class="DescriptionAttendees">
+                <span>Attendees</span> 
+            </div>
+            
+            <div class="atttendees">
+                pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>
+            </div>
+            
+            <div class="addUser">
+                <form class="formWrap" method="post" accept-charset="UTF-8">
+                    
+                    <select class="form-select" name="addedUser">
+                        <option value="id1?">Jan Rajnoha</option>
+                        <option value="id2?">Martin Zednicek</option>
+                        <option value="id3?">Ales Kravic</option>
+                    </select>
+                    
+                        <input type="submit" class="form-add" value="Add">
 
+                </form>
+            </div>
+            
+        </div>
+        
+        
 
     </div>
 </div>

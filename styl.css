@@ -752,3 +752,122 @@ textArea:focus
 {
     float:left;
 }
+
+.eventsWindow .eventFrame
+{
+    width:100%;
+    height: 200px;
+    background-color: rgb(30,30,30);
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.eventsWindow .eventFrame .title
+{
+    width:20%;
+    margin-right:40%;
+    height:20%;
+    float:left;
+}
+.eventsWindow .eventFrame .DescriptionTitle
+{
+    width:20%;
+    height:40%;
+    float:left;
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
+.eventsWindow .eventFrame .date
+{
+    width:20%;
+    height:20%;
+    float:left;
+}
+
+.eventsWindow .eventFrame .time
+{
+    width:20%;
+    height:20%;
+    float:left;
+}
+
+.eventsWindow .eventFrame .description
+{
+    width:80%;
+    height:40%;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    float:left;
+    overflow:scroll;
+    -ms-overflow-style: none;
+    padding-right:15px;
+}
+.eventsWindow .eventFrame .description::-webkit-scrollbar
+{
+    display:none;
+}
+.eventsWindow .eventFrame .addUser
+{
+    width:40%;
+    height:40%;
+    float:left;
+}
+
+.eventsWindow .eventFrame .DescriptionAttendees
+{
+    width:20%;
+    height:40%;
+    float:left;
+}
+
+.eventsWindow .eventFrame .atttendees
+{
+    padding-left: 5px;
+    padding-top: 2px;
+    width:40%;
+    height:40%;
+    float:left;
+    overflow:scroll;
+    -ms-overflow-style: none;
+}
+.eventsWindow .eventFrame .atttendees::-webkit-scrollbar
+{
+    display:none;
+}
+
+.eventFrame .form-select
+{
+    height:80%;
+    background-color: rgb(25,25,25);
+    border:none;
+    color:white;
+    padding-left:10px;
+    float:left;
+    width:80%;
+}
+
+.eventFrame .form-add
+{
+    height:80%;
+    background-color: rgb(25,25,25);
+    color:white;
+    float:left;
+    width:20%;
+    border: none;
+}
+
+.eventFrame .formWrap
+{
+    height:100%;
+    width:100%;
+    padding-top: 5%;
+}
+
+.eventFrame span
+{
+    background-color: rgb(25,25,25);
+    padding-left: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+}
