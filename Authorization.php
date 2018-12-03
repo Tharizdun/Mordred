@@ -13,11 +13,14 @@ class Authorization
 	{
 		$users = new Users();
 		
-		$userPass = $users->GetUserInfo($email, "Password");
+		$userInfo = $users->GetUserInfo($email);
 		
-		if ($userPass == NULL)
+		if ($userInfo['Deleted'])
 			return false;
-		else if ($pass == $userPass['Password'])
+		
+		if ($userInfo == NULL)
+			return false;
+		else if ($pass == $userInfo['Password'])
 			return true;
 		else
 			return false;
