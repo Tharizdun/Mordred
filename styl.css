@@ -624,6 +624,17 @@ textArea:focus
     margin-bottom:50px;
     overflow:auto;
 }
+
+.settings-form-field .input-area
+{
+        height: 80px;
+        width:100%;
+        float:left;
+	border-radius:10px;
+        display:block;
+        background-color: rgb(25,25,25);
+        margin-bottom: 20px;
+}
 .settings-form-subsection
 {
     width:50%;
@@ -702,4 +713,42 @@ textArea:focus
 .profile .messageWindowBig::-webkit-scrollbar
 {
     display:none;
+}
+
+.modal-content
+{
+    background-color:rgb(35,35,35);
+    border-radius:30px;
+}
+
+.eventsHeader
+{
+    height: 100px;
+    width: 90%;
+    margin-left: auto;
+    margin-right:auto;
+    padding-top: 25px;
+}
+
+.eventsWindow
+{
+    height: calc(100vh - 162px);
+    overflow:scroll;
+    -ms-overflow-style: none;
+    width:90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.eventsWindow::-webkit-scrollbar
+{
+    display:none;
+}
+.eventsHeader .floatRight
+{
+    float:right;
+}
+.eventsHeader h1
+{
+    float:left;
 }
