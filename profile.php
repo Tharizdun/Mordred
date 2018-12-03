@@ -114,7 +114,7 @@ else
 			if ($isOwner)
 			{
                 echo "<div class=\"chatArea2\">";
-				echo "<form class=\"messages-post\" action=\"profile?id=" . $id . "\" method=\"post\">";
+				echo "<form class=\"messages-post\" action=\"profile?id=" . $id . "\" method=\"post\" accept-charset='UTF-8'>";
 				echo "		<textarea type=\"text\" class=\"input-area\" name=\"message\" placeholder=\"Post message\"></textarea>";
 				echo "		<input type=\"submit\" value=\"Post\" class=\"post-button\">";
 				echo "</form>";
