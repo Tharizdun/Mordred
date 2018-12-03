@@ -17,13 +17,21 @@ if (!empty($_POST) && !empty($_GET))
 {
 	if (isset($_GET['id']))
 	{
-		$userInfo = $users->GetUserByID( $_GET['id']);
-		$userID = $_GET['id'];
+		if ($_GET['id'] == "-1")
+		{
+			$userInfo = $users->GetUserInfo($_SESSION['email'], "ID");
+			$userID = $userInfo[0];
+		}
+		else		
+		{
+			$userInfo = $users->GetUserByID( $_GET['id']);
+			$userID = $_GET['id'];
+		}
 	}
 	else
 	{
 		$userInfo = $users->GetUserInfo($_SESSION['email'], "ID");
-		$userID = $userID[0];
+		$userID = $userInfo[0];
 	}
 
 	if (isset($_GET['form']))
@@ -97,8 +105,16 @@ else
 	if (!empty($_GET))
 		if (isset($_GET['id']))
 		{
-			$userInfo = $users->GetUserByID($_GET['id']);
-			$userID = $userInfo['ID'];
+			if ($_GET['id'] == "-1")
+			{
+				$userInfo = $users->GetUserInfo($_SESSION['email']);
+				$userID = $userInfo[0];
+			}
+			else		
+			{
+				$userInfo = $users->GetUserByID( $_GET['id']);
+				$userID = $_GET['id'];
+			}
 		}
 		else
 		{
