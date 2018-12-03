@@ -3,7 +3,7 @@
 require_once "Common.php";
 require_once "Users.php";
 
-$id = -1;	
+$id = "-1";	
 		
 $users = new Users();	
 
@@ -45,10 +45,11 @@ else
 	$isAdmin = $isAdmin['Admin'];
 	$isOwner = False;
 
-	if ($id == -1)
+	if ($id == "-1")
 	{
 		$user = $users->GetUserInfo($_SESSION['email'], "ID, FirstName, LastName");
 		$isOwner = $isOwner || True;
+		$id = $user['ID'];
 	}
 	else
 	{
