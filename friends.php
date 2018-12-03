@@ -79,6 +79,8 @@ else
 					echo "	<a class=\"btn btn-secondary\" href=\"profile?action=remove&id=" . $id . "\">Remove friend</a>";
 				else
 					echo "	<a class=\"btn btn-secondary\" href=\"profile?action=add&id=" . $id . "\">Add friend</a>";
+										
+				echo "	<a href=\"messages?id=" . $id . "\" class=\"btn btn-secondary\">Message</a>";
 			}
 			
 			echo "	<a href=\"profile?id=" . $id . "\" class=\"btn btn-secondary\">Feed</a>";
