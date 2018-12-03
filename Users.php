@@ -170,6 +170,11 @@ class Users
 	{
 		$this->dbc->Update("Users", $column, $value, "ID='" . $id . "'");
 	}
+	
+	function DeactivateUser($id)
+	{
+		$this->dbc->Update("Users", "Deleted", "1", "ID = " . $id);
+	}
 }
 
 

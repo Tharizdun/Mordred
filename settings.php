@@ -68,7 +68,7 @@ if (!empty($_POST) && !empty($_GET))
 				{
 					$showAlert = true;
 					$messageAlert = "Your passwords are not same";
-				}			
+				}
 				
 				break;
 			
@@ -96,6 +96,40 @@ if (!empty($_POST) && !empty($_GET))
 				
 				$showSuccess = true;
 				$message = "Your data has been changed";
+				break;
+				
+			case "deactivate":
+				
+				$userInfo = $users->GetUserByID($userID);
+			
+				if ($_POST['DeactivatePass'] == $_POST['DeactivatePassAgain'])
+				{
+						if ($auth->AuthorizeUser($_SESSION['email'], $_POST['DeactivatePass'] ))
+						{
+							$users->DeactivateUser($userID);
+							
+							$currentUserID = $users->GetUserInfo($_SESSION['email'], "ID");
+							
+							if ($currentUserID['ID'] == $userID)
+								redirect("signout");
+							else
+							{
+								$showSuccess = true;
+								$message = "User has been deactivated";
+							}
+						}
+						else
+						{
+							$showAlert = true;
+							$messageAlert = "Your password is not correct";
+						}
+				}
+				else
+				{
+					$showAlert = true;
+					$messageAlert = "Your passwords are not same";
+				}
+				
 				break;
 		}
 	}
@@ -134,6 +168,10 @@ if (!isset($_SESSION['email']))
 }
 else
 {
+
+$currentUser = $users->GetUserInfo($_SESSION['email']);
+if (!$currentUser['Admin'] && $userID != $currentUser['ID'])
+	redirect("settings");
 
 MakeHeader("Settings", "homepage");
 
@@ -263,7 +301,7 @@ if ($showSuccess)
         
     </form>
                                                                 
-    <form method="post" class="settings-form-field borderTop" accept-charset="utf-8">
+    <form method="post" class="settings-form-field borderTop"action="settings?id=<?php echo $userID; ?>&form=deactivate"  accept-charset="utf-8">
         <div class="settings-form-subsection noFloat">
             <div class="form">
                     <p>Password</p>
