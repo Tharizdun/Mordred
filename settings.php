@@ -26,6 +26,9 @@ if (!empty($_POST) && !empty($_GET))
 		{
 			$userInfo = $users->GetUserByID( $_GET['id']);
 			$userID = $_GET['id'];
+			
+			if ($userInfo['Deleted'])
+				redirect("homepage");
 		}
 	}
 	else
@@ -83,14 +86,21 @@ if (!empty($_POST) && !empty($_GET))
 				$users->UpdateInfo($userID, "Email", $_POST['email']);
 				$users->UpdateInfo($userID, "Residence", $_POST['residence']);
 				
-				$userRelation = $users->GetUserInfo($_POST['relationship'], "ID");
-				if ($userRelation == NULL)
+				if ($_POST['relationship'] == "")
 				{
-					$showAlert = true;
-					$messageAlert = "Partner error: User with this email is not in system";
+					$users->UpdateInfo($userID, "Relationship", "");
 				}
 				else
-					$users->UpdateInfo($userID, "Relationship", $userRelation['ID']);
+				{
+					$userRelation = $users->GetUserInfo($_POST['relationship'], "ID");
+					if ($userRelation == NULL)
+					{
+						$showAlert = true;
+						$messageAlert = "Partner error: User with this email is not in system";
+					}
+					else
+						$users->UpdateInfo($userID, "Relationship", $userRelation['ID']);
+				}
 				
 				$userInfo = $users->GetUserByID($userID);
 				
@@ -148,6 +158,9 @@ else
 			{
 				$userInfo = $users->GetUserByID( $_GET['id']);
 				$userID = $_GET['id'];
+			
+				if ($userInfo['Deleted'])
+					redirect("homepage");
 			}
 		}
 		else

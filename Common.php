@@ -171,6 +171,9 @@ function MakeConversationPane()
 								
 								$convTitle = "";
 								
+								if (sizeof($convUsers) == 1)
+									continue;
+								
 								foreach($convUsers as $userID)
 								{
 									if ($userID != $user['ID'])

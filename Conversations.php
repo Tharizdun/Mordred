@@ -70,6 +70,11 @@ class Conversations
 		
 		foreach($result as $user)
 		{
+			$userInfo = $this->users->GetUserByID($user[0]);
+			
+			if ($userInfo['Deleted'])
+				continue;
+			
 			array_push($convUsers, $user[0]);
 		}
 		
