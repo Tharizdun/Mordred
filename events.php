@@ -115,6 +115,9 @@ if ($showSuccess)
 		
 		foreach ($events as $event)
 		{
+			
+			$userAttended = $acts->GetEventPeople($event['ID']);
+			
 		?>
 		
         <div class="eventFrame">
@@ -153,7 +156,16 @@ if ($showSuccess)
             </div>
             
             <div class="atttendees">
-                pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>pepa<br>
+			<?php
+			
+				foreach ($userAttended as $user)
+				{
+					$userInfo = $users->GetUserByID($user);
+				
+					echo "<a href=\"profile?id=" . $userInfo['ID'] . "\">" . $userInfo['FirstName'] . " " . $userInfo['LastName'] . "</a><br>";
+				}
+			
+			?>
             </div>
             
             <div class="addUser">
