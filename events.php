@@ -1,9 +1,9 @@
 <?php
 
 require_once "Common.php";
-require_once "Authorization.php";
+require_once "Actions.php";
 
-$auth = new Authorization();
+$acts = new Actions();
 $users = new Users();
 
 $userID = "";
@@ -12,154 +12,17 @@ $showAlert = false;
 $showSuccess = false;
 $message  = "";
 $messageAlert  = "";
+$currentUser = $users->GetUserInfo($_SESSION['email']);
 
-if (!empty($_POST) && !empty($_GET))
+if (!empty($_POST))
 {
-	if (isset($_GET['id']))
-	{
-		if ($_GET['id'] == "-1")
-		{
-			$userInfo = $users->GetUserInfo($_SESSION['email'], "ID");
-			$userID = $userInfo[0];
-		}
-		else		
-		{
-			$userInfo = $users->GetUserByID( $_GET['id']);
-			$userID = $_GET['id'];
-		}
-	}
-	else
-	{
-		$userInfo = $users->GetUserInfo($_SESSION['email'], "ID");
-		$userID = $userInfo[0];
-	}
+	$title = $_POST['Title'];
+	$description = $_POST['Description'];
+	$time = $_POST['Time'];
+	$date = $_POST['Date'];
+	$place = $_POST['Place'];
 
-	if (isset($_GET['form']))
-	{
-		switch ($_GET['form'])
-		{
-			case "pass":
-				
-				$userInfo = $users->GetUserByID($userID);
-			
-				if ($_POST['Password'] == $_POST['PasswordAgain'])
-				{
-					if (strlen($_POST['Password']) > 5)
-					{
-						if ($auth->AuthorizeUser($userInfo['Email'], $_POST['OldPassword'] ))
-						{
-							$users->UpdateInfo($userID, "Password", $_POST['Password']);
-							$showSuccess = true;
-							$message = "Your password has been changed";
-						}
-						else
-						{
-							$showAlert = true;
-							$messageAlert = "Your old password is not correct";
-						}
-					}
-					else
-					{
-						$showAlert = true;
-						$messageAlert = "Your password is too short";
-					}
-				}
-				else
-				{
-					$showAlert = true;
-					$messageAlert = "Your passwords are not same";
-				}
-				
-				break;
-			
-			case "info":
-				$users->UpdateInfo($userID, "FirstName", $_POST['firstName']);
-				$users->UpdateInfo($userID, "LastName", $_POST['lastName']);
-				$users->UpdateInfo($userID, "Phone", $_POST['phone']);
-				$users->UpdateInfo($userID, "Occupation", $_POST['occupation']);
-				$users->UpdateInfo($userID, "School", $_POST['school']);
-				$users->UpdateInfo($userID, "Birthday", $_POST['bday']);
-				$users->UpdateInfo($userID, "RelationshipStatus", $_POST['RelationshipStatus']);
-				$users->UpdateInfo($userID, "Email", $_POST['email']);
-				$users->UpdateInfo($userID, "Residence", $_POST['residence']);
-				
-				$userRelation = $users->GetUserInfo($_POST['relationship'], "ID");
-				if ($userRelation == NULL)
-				{
-					$showAlert = true;
-					$messageAlert = "Partner error: User with this email is not in system";
-				}
-				else
-					$users->UpdateInfo($userID, "Relationship", $userRelation['ID']);
-				
-				$userInfo = $users->GetUserByID($userID);
-				
-				$showSuccess = true;
-				$message = "Your data has been changed";
-				break;
-				
-			case "deactivate":
-				
-				$userInfo = $users->GetUserByID($userID);
-			
-				if ($_POST['DeactivatePass'] == $_POST['DeactivatePassAgain'])
-				{
-						if ($auth->AuthorizeUser($_SESSION['email'], $_POST['DeactivatePass'] ))
-						{
-							$users->DeactivateUser($userID);
-							
-							$currentUserID = $users->GetUserInfo($_SESSION['email'], "ID");
-							
-							if ($currentUserID['ID'] == $userID)
-								redirect("signout");
-							else
-							{
-								$showSuccess = true;
-								$message = "User has been deactivated";
-							}
-						}
-						else
-						{
-							$showAlert = true;
-							$messageAlert = "Your password is not correct";
-						}
-				}
-				else
-				{
-					$showAlert = true;
-					$messageAlert = "Your passwords are not same";
-				}
-				
-				break;
-		}
-	}
-}
-else
-{
-	if (!empty($_GET))
-		if (isset($_GET['id']))
-		{
-			if ($_GET['id'] == "-1")
-			{
-				$userInfo = $users->GetUserInfo($_SESSION['email']);
-				$userID = $userInfo[0];
-			}
-			else		
-			{
-				$userInfo = $users->GetUserByID( $_GET['id']);
-				$userID = $_GET['id'];
-			}
-		}
-		else
-		{
-			$userInfo = $users->GetUserInfo($_SESSION['email']);
-			$userID = $userInfo['ID'];
-		}
-	else
-	{
-		$userInfo = $users->GetUserInfo($_SESSION['email']);
-		$userID = $userInfo['ID'];	
-	}
+	$acts->AddEvent($currentUser['ID'], $title, $description, $time, $date, $place);
 }
 
 if (!isset($_SESSION['email']))
@@ -169,11 +32,7 @@ if (!isset($_SESSION['email']))
 else
 {
 
-$currentUser = $users->GetUserInfo($_SESSION['email']);
-if (!$currentUser['Admin'] && $userID != $currentUser['ID'])
-	redirect("settings");
-
-MakeHeader("Settings", "homepage");
+MakeHeader("Events", "homepage");
 
 MakeMenu();
 
@@ -211,7 +70,7 @@ if ($showSuccess)
 
         <!-- Modal content-->
         <div class="modal-content">
-            <form method="post" class="settings-form-field" accept-charset="utf-8">
+            <form method="post" class="settings-form-field" action="events" accept-charset="utf-8">
              
                     <div class="form">
                         <p>Title</p>
@@ -225,12 +84,12 @@ if ($showSuccess)
                 
                     <div class="form">
                         <p>Date</p>
-                        <input type="date" class="form-item" name="Date">
+                        <input type="date" class="form-item" name="Date" value="<?php echo date("Y-m-d"); ?>">
                     </div>
                 
                     <div class="form">
                         <p>Time</p>
-                        <input type="time" class="form-item" name="Time">
+                        <input type="time" class="form-item" name="Time"  value="<?php echo date("H:i"); ?>">
                     </div>
 
                     <div class="form">
@@ -250,17 +109,25 @@ if ($showSuccess)
 
     <div class="eventsWindow borderTop">
         
+		<?php 
+		
+		$events = $acts->GetEvents($currentUser['ID']);
+		
+		foreach ($events as $event)
+		{
+		?>
+		
         <div class="eventFrame">
             <div class="title">
-                <span>Title</span>
+                <span><?php echo $event['Title']; ?></span>
             </div>
             
             <div class="date">
-                <span>Date</span>
+                <span><?php echo $event['Date']; ?></span>
             </div>
             
             <div class="time">
-                <span>Time</span>
+                <span><?php echo $event['Time']; ?></span>
             </div>
             
             <div class="PlaceTitle">
@@ -268,7 +135,7 @@ if ($showSuccess)
             </div>
             
             <div class="Place">
-                <p>Brno hlavni nadrazi</p>
+                <p><?php echo $event['Place']; ?></p>
             </div>
             
             <div class="DescriptionTitle">
@@ -276,7 +143,7 @@ if ($showSuccess)
             </div>
             
             <div class="description">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p><?php echo $event['Description']; ?></p>
             </div>
             
             
@@ -302,8 +169,13 @@ if ($showSuccess)
 
                 </form>
             </div>
-            
         </div>
+	
+	<?php 
+	}
+            
+	
+	?>
         
         
 

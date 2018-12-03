@@ -27,12 +27,41 @@ class Actions
 		if ($eventID != NULL)
 			$eventID = $eventID[0];
 			
-		$this->AddCreator($eventID, $creatorID);
+		$this->AddEventUser($eventID, $creatorID, "creators");
 	}
 	
 	function GetEvent($eventID)
 	{
 		return $this->dbc->Select("Events", "*", "ID='" . $eventID . "'");
+	}
+	
+	function GetEvents($userID)
+	{
+		$events = array();
+		$participiant = array();
+	
+		$allEvents = $this->dbc->Select("Events")->FetchAll();
+		$allAttended = $this->dbc->Select("EventsAttended", "IDEvent", "IDUser='" . $userID . "'")->FetchAll();
+		$allCreated = $this->dbc->Select("EventsCreators", "IDEvent", "IDUser='" . $userID . "'")->FetchAll();
+		
+		foreach($allAttended as $user)
+		{
+			array_push($participiant, $user[0]);
+		}
+		
+		foreach($allCreated as $user)
+		{
+			if (!in_array($user[0], $participiant))
+				array_push($participiant, $user[0]);
+		}
+		
+		foreach($allEvents as $event)
+		{
+			if (in_array($event['ID'], $participiant))
+				array_push($events, $event);
+		}
+		
+		return $events;
 	}
 	
 	function AddEventUser($eventID, $userID, $type = "attended")
@@ -42,11 +71,11 @@ class Actions
 		switch(strtolower($type))
 		{
 			case "attended":
-				$table = "EventAttended";
+				$table = "EventsAttended";
 				break;
 				
 			case "creators":
-				$table = "EventCreators";
+				$table = "EventsCreators";
 				break;
 				
 			default:
@@ -65,11 +94,11 @@ class Actions
 		switch(strtolower($type))
 		{
 			case "attended":
-				$table = "EventAttended";
+				$table = "EventsAttended";
 				break;
 				
 			case "creators":
-				$table = "EventCreators";
+				$table = "EventsCreators";
 				break;
 				
 			default:
@@ -89,12 +118,12 @@ class Actions
 		return $usersList;
 	}
 	
-	-----------
+	//-----------
 	
 	
 	
 	
-	
+	/*
 	function AddPost($email, $message)
 	{
 		$userID = $this->users->GetUserInfo($email, "ID");
@@ -192,5 +221,6 @@ class Actions
 		}
 		
 		return $tagPosts;
-	}
+	}*/
+	
 }
