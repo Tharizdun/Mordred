@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0067)https://www.fit.vutbr.cz/study/courses/IIS/private/projekt/doc.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+    
+    <title>Projekt IIS</title>
+    <style type="text/css">
+    	table { border-collapse: collapse; }
+    	td, th { border: 1px solid black; padding: 0.3em 0.5em; text-align: left; }
+    	dt { font-weight: bold; margin-top: 0.5em; }
+    </style>
+</head>
+<body>
+
+<!-- Zkontrolujte prosím nastavení kódování v hlavičce dokumentu 
+     podle použitého editoru -->
+
+<h1>59. Sociální síť</h1> <!-- Nahradte názvem svého zadání -->
+
+<dl>
+	<dt>Autoři</dt>
+	<dd>Jan Rajnoha <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xrajno09@stud.fit.vutbr.cz">xrajno09@stud.fit.vutbr.cz</a> -
+		back end
+	</dd>
+	<dd>Martin Zedníček <!-- Nahraďte skutečným jménem a e-mailem autora a popisem činnosti -->
+	    <a href="mailto:xzedni12@stud.fit.vutbr.cz">xzedni12@stud.fit.vutbr.cz</a> - 
+		front end
+	</dd>
+	<dt>URL aplikace</dt>
+	<dd><a href="http://www.stud.fit.vutbr.cz/~xzedni12/">http://www.stud.fit.vutbr.cz/~xzedni12/</a></dd>
+</dl>
+
+<h2>Uživatelé systému pro testování</h2>
+<table>
+<tbody><tr><th>Login</th><th>Heslo</th><th>Role</th></tr>
+<tr><td>admin@admin.com</td><td>admin</td><td>Administrátor</td></tr>
+<tr><td>user1@user.com</td><td>user1</td><td>Uživatel</td></tr>
+<tr><td>user2@user.com</td><td>user2</td><td>Uživatel</td></tr>
+<tr><td>user3@user.com</td><td>user3</td><td>Uživatel</td></tr>
+</tbody></table>
+
+<h2>Implementace</h2>
+<ul>
+    <li>Práce s uživately (admin)</li>
+    <ul>
+        <li>Přidat uživatele - neimplementováno, při revizi diagramu případu užití jsme nenašli důvod důvod proč by měl administrátor vytvářet nové uživatele</li>
+        <li>Odebrat uživatele - <b>Users.php</b>, admin může deaktivovat účet uživatele přistoupením na jeho profil, vybráním možnosti settings a následně zadáním hesla administrátora v sekci pro deaktivaci účtu</li>
+        <li>Editovat uživatele - <b>Users.php</b>, obdoba - admin může přistoupit na profil uživatele a změnit jeho nastavení</li>
+    </ul>
+    <li>Možnosti uživatele</li>
+        <ul>
+            <li>Vytvoření konverzace (např skupinové) - <b>Conversations.php, createConversation.php</b></li>
+            <li>Posílání zpráv - <b>Conversations.php</b></li>
+            <li>Vytváření eventů - <b>Actions.php</b></li>
+            <li>+Editace uživatele - <b>Users.php</b>, původně nebyl v use case diagramu zamýšlen</li>
+            <li>Přidávání a mazání přátel - <b>Users.php</b></li>
+            <li>Vytváření a mazání postů - <b>Posts.php</b></li>
+            <li>-Editace postů - neimplementováno, nedostatek času</li>
+            <li>-Alba - neimplementováno, nedostatek času</li>
+            <li>-Fotky a videa - neimplementováno, nedostatek času</li>
+            <li>+Vyhledávání postů a uživatelů - <b>Searching.php, search.php</b>, původně nebyl v use case diagramu zamýšlen</li>
+            <li>+Vytváření uživatele - <b>Users.php</b>, původně nebyl v use case diagramu zamýšlen</li>
+            <li>+Přihlášení/autorizace uživatele - <b>Authorization.php</b>, původně nebyl v use case diagramu zamýšlen</li>
+            <li>+Odhlášení uživatele - <b>Authorization.php, (signout.php)</b>, původně nebyl v use case diagramu zamýšlen</li>
+        </ul>
+</ul>
+<p>Všechny zmíněné PHP skripty implementují případy užití uvedené v use-case diagramu z IDS</p>
+
+<p>Skripty PHP implementující webovou prezentaci a částečně back-endovou část</p>
+
+<ul>
+    <li>about.php</li>
+    <li>Common.php</li>
+    <li>homepage.php</li>
+    <li>events.php</li>
+    <li>friends.php</li>
+    <li>index.php</li>
+    <li>messages.php</li>
+    <li>profile.php</li>
+    <li>register.php</li>
+    <li>settings.php</li>
+</ul>
+
+<h2>Instalace</h2>
+<ul>
+<li>Stručně popište postup instalace na server</li>
+    <ul>
+        <li>Rozbalit do cílového adresáře</li>
+    </ul>
+<li>Na serveru musí běžet PHP verze 5.6.33</li>
+<li>K inicializaci lze využít skript SQL odevzdaný v archivu</li>
+</ul>
+
+<h2>Známé problémy</h2>
+<ul>
+    <ul>
+        <li>Videa a fotky neimplementovány</li>
+        <li>SQL injection neošetřen</li>
+        <li>HTML injection neošetřen</li>
+        <li>Posty nelze editovat</li>
+    </ul>
+</ul>
+
+
+</body></html>
