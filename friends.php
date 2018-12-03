@@ -91,7 +91,8 @@ else
 			
 			echo "</div>";
 			echo "<hr class='separator2'>";
-				
+			echo "<div class='messageWindow'>";
+                        
 				$allUsers = $users->GetFriends($id);
 				
 				if ($allUsers != NULL)
@@ -108,6 +109,7 @@ else
 						echo "</div>";
 					}
 				}
+                        echo "</div>";
 				
 				?>
 	</div>

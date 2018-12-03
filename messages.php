@@ -185,7 +185,7 @@ MakeMenu();
         <div class="separator">
             <hr>
         </div>
-        <form class="messages-post" method="post" action="messages?convID=<?php echo $conversationID; ?>">
+        <form class="messages-post" method="post" action="messages?convID=<?php echo $conversationID; ?> " accept-charset="UTF-8">
                 <textarea type="text" class="input-area" name="message" placeholder="Message"></textarea>
                 <input type="submit" value="Send" class="post-button">
         </form>
