@@ -59,7 +59,7 @@ function MakeMenu()
         			<a class="nav-link" href="signout">Sign out<span class="sr-only">(current)</span></a>
       			</li>
     		</ul>
-    		<form class="form-inline my-2 my-lg-0"  method="post" action="search">
+    		<form class="form-inline my-2 my-lg-0"  method="post" action="search" accept-charset="UTF-8">
       			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
       			<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     		</form>
