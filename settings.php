@@ -262,6 +262,26 @@ if ($showSuccess)
             </div>
         
     </form>
+                                                                
+    <form method="post" class="settings-form-field borderTop" accept-charset="utf-8">
+        <div class="settings-form-subsection noFloat">
+            <div class="form">
+                    <p>Password</p>
+                    <input type="password" class="form-item" name="DeactivatePass">
+            </div>
+
+            <div class="form">
+                    <p>Password Again</p>
+                    <input type="password" class="form-item" name="DeactivatePassAgain">
+            </div>
+
+            <div class="form">
+                            <input type="submit" class="form-button" value="Deactivate Account">
+            </div>
+        </div>
+        
+    </form>
+    
 </div>
 
 <?php
