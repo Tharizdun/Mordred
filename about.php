@@ -77,7 +77,7 @@ else
 			echo "<hr class='separator2'>";
 			echo "<h3 class='separator2'>About</h3>";
 				?>
-			
+			<div class="messageWindow">
 			<b>Name: </b> <?php echo $user['FirstName'] . " " .  $user['LastName']; ?><br>
 			<b>Email: </b> <?php echo $user['Email']; ?><br>
 			<b>Phone: </b> <?php echo $user['Phone']; ?><br>
@@ -91,6 +91,7 @@ else
 			
 			 echo $userRelation['FirstName'] . " " .  $userRelation['LastName'] . " (" . $userRelation['Email'] . ")"; ?><br>
 			<b>Birthday: </b> <?php echo $user['Birthday']; ?>
+                        </div>
 				
 	</div>
 <?php
