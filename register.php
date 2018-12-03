@@ -3,6 +3,10 @@
 require_once "Common.php";
 require_once "Authorization.php";
 
+$showAlert = false;
+$alertMessage = "";
+$email = "";
+
 if (!empty($_POST)) 
 {
     $firstName = $_POST['firstName'];
@@ -13,20 +17,40 @@ if (!empty($_POST))
 	
 	$users = new Users();
 	
-	if ($pass == $passAgain && strlen($pass) > 5)
+	if ($pass == $passAgain)
 	{
-		$userInfo = $users->GetUserInfo($email);
-	
-		if ($userInfo == NULL)
+		if (strlen($pass) > 5)
 		{
-			$users->RegisterUser($firstName, $lastName, $email, $pass);
-			$_SESSION['email'] = $email;
+			$userInfo = $users->GetUserInfo($email);
+	
+			if ($userInfo == NULL)
+			{
+				$users->RegisterUser($firstName, $lastName, $email, $pass);
+				$_SESSION['email'] = $email;
+			}
+			else
+			{
+				$showAlert = true;
+				$alertMessage = "User with this email is already registered. Do you want <a href=\"index?email=" . $email . "\" class=\"alert-link\">login</a>?";
+			}
 		}
 		else
-    		redirect('register');
+		{
+			$showAlert = true;
+			$alertMessage = "Your password is too short.";
+		}
 	}
 	else
-    	redirect('register');	
+	{
+		$showAlert = true;
+		$alertMessage = "Your passwords are not same.";
+	}
+}
+
+if (!empty($_GET))
+{
+	if (isset($_GET['email']))
+		$email = $_GET['email'];
 }
 
 if (isset($_SESSION['email']))
@@ -38,6 +62,13 @@ else
 {
 
 MakeHeader("Register", "login");
+
+if ($showAlert)
+{
+	echo "<div class=\"alert alert-danger alert-message\" role=\"alert\">";
+  	echo $alertMessage;
+	echo "</div>";
+}
 
 ?>
 
@@ -59,7 +90,7 @@ MakeHeader("Register", "login");
 				
     	        <div class="form">
     	                <p>Email</p>
-    	                <input type="email" class="form-item" name="email">
+    	                <input type="email" class="form-item" name="email" value="<?php echo $email;?>">
     	        </div>
 				
     	        <div class="form">

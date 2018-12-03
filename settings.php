@@ -8,6 +8,9 @@ $users = new Users();
 
 $userID = "";
 $userInfo = "";
+$showAlert = false;
+$showSuccess = false;
+$message  = "";
 
 if (!empty($_POST) && !empty($_GET))
 {
@@ -31,9 +34,33 @@ if (!empty($_POST) && !empty($_GET))
 				$userInfo = $users->GetUserByID($userID);
 			
 				if ($_POST['Password'] == $_POST['PasswordAgain'])
-					if ($auth->AuthorizeUser($userInfo['Email'], $_POST['OldPassword'] ))
-						$users->UpdateInfo($userID, "Password", $_POST['Password']);
-			
+				{
+					if (strlen($_POST['Password']) > 5)
+					{
+						if ($auth->AuthorizeUser($userInfo['Email'], $_POST['OldPassword'] ))
+						{
+							$users->UpdateInfo($userID, "Password", $_POST['Password']);
+							$showSuccess = true;
+							$message = "Your password has been changed";
+						}
+						else
+						{
+							$showAlert = true;
+							$message = "Your old password is not correct";
+						}
+					}
+					else
+					{
+						$showAlert = true;
+						$message = "Your password is too short";
+					}
+				}
+				else
+				{
+						$showAlert = true;
+						$message = "Your passwords are not same";
+				}			
+				
 				break;
 			
 			case "info":
@@ -49,6 +76,9 @@ if (!empty($_POST) && !empty($_GET))
 				$users->UpdateInfo($userID, "Residence", $_POST['residence']);
 				
 				$userInfo = $users->GetUserByID($userID);
+				
+				$showSuccess = true;
+				$message = "Your data has been changed";
 				break;
 		}
 	}
@@ -87,6 +117,23 @@ MakeMenu();
 ?>
 
 <div class="temp-fix">
+
+<?php 
+if ($showAlert)
+{
+	echo "<div class=\"alert alert-danger alert-message\" role=\"alert\">";
+  	echo $message;
+	echo "</div>";
+}
+
+if ($showSuccess)
+{
+	echo "<div class=\"alert alert-success alert-message\" role=\"alert\">";
+  	echo $message;
+	echo "</div>";
+}
+?>
+
     <form method="post" class="settings-form-field" action="settings?id=<?php echo $userID; ?>&form=info" accept-charset="utf-8">
         <div class="settings-form-subsection">
             <div class="form">
