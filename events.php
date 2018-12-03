@@ -14,15 +14,24 @@ $message  = "";
 $messageAlert  = "";
 $currentUser = $users->GetUserInfo($_SESSION['email']);
 
-if (!empty($_POST))
+if (!empty($_POST) && !empty($_GET))
 {
-	$title = $_POST['Title'];
-	$description = $_POST['Description'];
-	$time = $_POST['Time'];
-	$date = $_POST['Date'];
-	$place = $_POST['Place'];
-
-	$acts->AddEvent($currentUser['ID'], $title, $description, $time, $date, $place);
+	switch ($_GET['action'])
+	{
+		case "newEvent":
+			$title = $_POST['Title'];
+			$description = $_POST['Description'];
+			$time = $_POST['Time'];
+			$date = $_POST['Date'];
+			$place = $_POST['Place'];
+		
+			$acts->AddEvent($currentUser['ID'], $title, $description, $time, $date, $place);
+			break;
+			
+		case "addUser":
+			$acts->AddEventUser($_GET['event'], $_POST['addedUser']);
+			break;
+	}
 }
 
 if (!isset($_SESSION['email']))
@@ -70,7 +79,7 @@ if ($showSuccess)
 
         <!-- Modal content-->
         <div class="modal-content">
-            <form method="post" class="settings-form-field" action="events" accept-charset="utf-8">
+            <form method="post" class="settings-form-field" action="events?action=newEvent" accept-charset="utf-8">
              
                     <div class="form">
                         <p>Title</p>
@@ -169,15 +178,33 @@ if ($showSuccess)
             </div>
             
             <div class="addUser">
-                <form class="formWrap" method="post" accept-charset="UTF-8">
+                <form class="formWrap" method="post" action="events?action=addUser&event=<?php echo $event['ID']; ?>" accept-charset="UTF-8">
                     
                     <select class="form-select" name="addedUser">
-                        <option value="id1?">Jan Rajnoha</option>
-                        <option value="id2?">Martin Zednicek</option>
-                        <option value="id3?">Ales Kravic</option>
+					
+					<?php 
+					
+						$friends = $users->GetFriends($currentUser['ID']);
+						
+						if ($friends != NULL)
+						{						
+							foreach($friends as $user)
+							{
+								if (!in_array($user, $userAttended))
+								{
+									$user = $users->GetUserByID($user);
+								
+									$userName = $user['FirstName'] . " " .  $user['LastName'];
+									
+									echo "<option value=\"" . $user['ID'] . "\">" . $userName . "</option>";
+								}
+							}
+						}					
+					?>
+					
                     </select>
                     
-                        <input type="submit" class="form-add" value="Add">
+                    <input type="submit" class="form-add" value="Add">
 
                 </form>
             </div>
