@@ -138,9 +138,10 @@ if ($showSuccess)
 		{
 			if (strtotime($event['Date']) < strtotime("today"))
 				continue;
-				
-			if (strtotime($event['Time']) < time())
-				continue;
+			
+			if (strtotime($event['Date']) = strtotime("today"))
+				if (strtotime($event['Time']) < time())
+					continue;
 			
 			$userAttended = $acts->GetEventPeople($event['ID']);
 			
